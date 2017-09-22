@@ -29,26 +29,24 @@ void setup() {
 }
 
 void draw() {
-    if (mousePressed) {fill (CLICK_FILL_COLOR);
+  if (mousePressed) {
+    fill (CLICK_FILL_COLOR);
     ellipse(circleX, circleY, CIRCLE_SIZE * 8, CIRCLE_SIZE); // CHANGED - shape of ellipse when mouse click
     if (mousePressed) circleVX = CIRCLE_SPEED + 5; // CHANGED - faster speed when mouse pressed
     circleVY = CIRCLE_SPEED + 10; // CHANGED - faster speed when mouse pressed
     if (circleX + CIRCLE_SIZE > width || circleX - CIRCLE_SIZE/2 < 0) {
-    circleVX = -circleVX; // CHANGED
-  }
-  
+      circleVX = -circleVX; // CHANGED
+    }
+
     if (circleY + CIRCLE_SIZE> height || circleY - CIRCLE_SIZE/2 < 0) {
-   circleVY = -circleVY; // CHANGED - tragectory of ellipse when mouse pressed 
-   circleY = -circleVY; // CHANGED - tragectory of ellipse when mouse pressed
-    
-  }
-  
-  }
-  else {
+      circleVY = -circleVY; // CHANGED - tragectory of ellipse when mouse pressed 
+      circleY = -circleVY; // CHANGED - tragectory of ellipse when mouse pressed
+    }
+  } else {
     fill(NO_CLICK_FILL_COLOR); // If it is it will fill the circle blue
   }
-  
-    
+
+
   ellipse(circleX, circleY, CIRCLE_SIZE, CIRCLE_SIZE); // Dimentions for drawing the circle 
   circleX += circleVX; // Moving the circle on X axis 
   circleY += circleVY; // Moving the circle on Y axis
@@ -59,5 +57,4 @@ void draw() {
   if (circleY + CIRCLE_SIZE/2 > height || circleY - CIRCLE_SIZE/2 < 0) {
     circleVY = -circleVY; // When circleY hits left or right walls it will bounce back
   }
- 
 }
