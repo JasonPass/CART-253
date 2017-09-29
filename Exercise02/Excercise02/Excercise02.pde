@@ -5,7 +5,7 @@ color backgroundColor = color(0);
 int numStatic = 1; //CHANGED lower static
 int staticSizeMin = 0; //CHANGED min to 0
 int staticSizeMax = 20; //CHANGED max size to 20
-color staticColor = color(200,40,30); //CHANGED color of static to dark red
+color staticColor = color(200, 40, 30); //CHANGED color of static to dark red
 
 //Variables of paddle dimensions, speed of paddle, and color
 int paddleX;
@@ -23,7 +23,7 @@ int ballVX;
 int ballVY;
 int ballSpeed = 5;
 int ballSize = 16;
-color ballColor = color(180,80,80); //CHANGED - added color to the ball 
+color ballColor = color(180, 80, 80); //CHANGED - added color to the ball 
 
 //CHANGED - added new box
 int boxX;
@@ -32,15 +32,15 @@ int boxVX;
 int boxVY;
 int boxSize = 44;
 int boxSpeed = 8;
-int boxColor = color(180,80,80);
+int boxColor = color(180, 80, 80);
 
 
- 
+
 
 //The setup for the size, paddle position, and ball position
 void setup() {
   size(640, 480);
-  
+
   setupPaddle();
   setupBall();
   setupbox();
@@ -67,7 +67,6 @@ void setupbox() {
   boxY = height/2;
   boxVX = boxSpeed;
   boxVY = boxSpeed;
-  
 }
 
 
@@ -82,39 +81,37 @@ void draw() {
 
   drawPaddle();
   drawBall();
-  
+
   drawbox();
   updatebox();
-  
 }
 
 //Drawing the loop of static with arguments
 void drawStatic() {
   for (int i = 0; i < numStatic; i++) {
-   float x = random(0,width);
-   float y = random(0,height);
-   float staticSize = random(staticSizeMin,staticSizeMax);
-   fill(staticColor);
-   rect(x,y,staticSize,staticSize);
+    float x = random(0, width);
+    float y = random(0, height);
+    float staticSize = random(staticSizeMin, staticSizeMax);
+    fill(staticColor);
+    rect(x, y, staticSize, staticSize);
   }
 }
 
 //Function that allows the paddle to move across X axis
 void updatePaddle() {
   paddleX += paddleVX;  
-  paddleX = constrain(paddleX,0+paddleWidth/2,width-paddleWidth/2);
+  paddleX = constrain(paddleX, 0+paddleWidth/2, width-paddleWidth/2);
 }
 
 //Function for ball movement speed
 void updateBall() {
   ballX += ballVX;
   ballY += ballVY;
-  
+
   //Functions for the way the ball behaves
   handleBallHitPaddle();
   handleBallHitWall();
   handleBallOffBottom();
-  
 }
 
 //CHANGED functions for box movements 
@@ -125,7 +122,7 @@ void updatebox() {
   handleboxHitWall();
   handleboxOffBottom();
 }
-  
+
 
 //Function for drawing paddle
 void drawPaddle() {
@@ -140,7 +137,7 @@ void drawBall() {
   rectMode(CENTER);
   noStroke();
   fill(ballColor);
-  rect(ballX, ballY, ballSize, ballSize); 
+  rect(ballX, ballY, ballSize, ballSize);
 }
 
 //CHANGED - function that draws box
@@ -152,7 +149,7 @@ void drawbox() {
 }
 
 
-    
+
 
 //Function for how the ball behaves when it hits the paddle
 void handleBallHitPaddle() {
@@ -172,8 +169,6 @@ void handleBoxHitPaddle() {
     boxSize = boxSize +5;
     boxSize = paddleWidth - boxSize/1;
   }
- 
-
 }
 
 //Boolean function that checks if the ball hits the paddle, if it does it returns true, if not it returns false
@@ -196,7 +191,7 @@ boolean boxOverlapsPaddle() {
     }
   }
   return false;
- }
+}
 
 //Function for when the ball falls of the screen, the ball will be reset
 void handleBallOffBottom() {
@@ -210,7 +205,7 @@ void handleBallOffBottom() {
 void handleboxOffBottom() {
   if (boxOffBottom()) {
     boxX = width/8;
-    boxY = height/5; 
+    boxY = height/5;
   }
 }
 
@@ -234,7 +229,7 @@ void handleBallHitWall() {
     ballX = width - ballSize/2;
     ballVX = -ballVX;
   }
-  
+
   if (ballY - ballSize/2 < 0) {
     ballY = 0 + ballSize/2;
     ballVY = -ballVY;
@@ -250,7 +245,7 @@ void handleboxHitWall() {
     boxX = width - boxSize/2;
     boxVX = -boxVY;
   }
-  
+
   if (boxY - boxSize/2 < 0) {
     boxY = 0 + boxSize/2; 
     boxVY = -boxVY;
