@@ -16,6 +16,7 @@ int paddleWidth = 128;
 int paddleHeight = 16;
 color paddleColor = color(255);
 
+//Variables for the ball dimensions, location, velocity, and color
 int ballX;
 int ballY;
 int ballVX;
@@ -24,6 +25,7 @@ int ballSpeed = 5;
 int ballSize = 16;
 color ballColor = color(255);
 
+//The setup for the size, paddle position, and ball position
 void setup() {
   size(640, 480);
   
@@ -31,12 +33,14 @@ void setup() {
   setupBall();
 }
 
+//Functions for the paddle
 void setupPaddle() {
   paddleX = width/2;
   paddleY = height - paddleHeight;
   paddleVX = 0;
 }
 
+//Setting up the ball in the middle of the screen and ball velocity
 void setupBall() {
   ballX = width/2;
   ballY = height/2;
@@ -44,6 +48,7 @@ void setupBall() {
   ballVY = ballSpeed;
 }
 
+//Calling the functions for the static, ball, and paddle
 void draw() {
   background(backgroundColor);
 
@@ -56,6 +61,7 @@ void draw() {
   drawBall();
 }
 
+//Drawing the loop of static with arguments
 void drawStatic() {
   for (int i = 0; i < numStatic; i++) {
    float x = random(0,width);
@@ -66,20 +72,24 @@ void drawStatic() {
   }
 }
 
+//Function that allows the paddle to move across X axis
 void updatePaddle() {
   paddleX += paddleVX;  
   paddleX = constrain(paddleX,0+paddleWidth/2,width-paddleWidth/2);
 }
 
+//Function for ball movement speed
 void updateBall() {
   ballX += ballVX;
   ballY += ballVY;
   
+  //Functions for the way the ball behaves
   handleBallHitPaddle();
   handleBallHitWall();
   handleBallOffBottom();
 }
 
+//Function for drawing paddle
 void drawPaddle() {
   rectMode(CENTER);
   noStroke();
@@ -87,6 +97,7 @@ void drawPaddle() {
   rect(paddleX, paddleY, paddleWidth, paddleHeight);
 }
 
+//Functions for drawing ball
 void drawBall() {
   rectMode(CENTER);
   noStroke();
@@ -94,6 +105,7 @@ void drawBall() {
   rect(ballX, ballY, ballSize, ballSize);
 }
 
+//Function for how the ball behaves when it hits the paddle
 void handleBallHitPaddle() {
   if (ballOverlapsPaddle()) {
     ballY = paddleY - paddleHeight/2 - ballSize/2;
@@ -101,6 +113,7 @@ void handleBallHitPaddle() {
   }
 }
 
+//Boolean function that checks if the ball hits the paddle, if it does it returns true, if not it returns false
 boolean ballOverlapsPaddle() {
   if (ballX - ballSize/2 > paddleX - paddleWidth/2 && ballX + ballSize/2 < paddleX + paddleWidth/2) {
     if (ballY > paddleY - paddleHeight/2) {
@@ -110,6 +123,7 @@ boolean ballOverlapsPaddle() {
   return false;
 }
 
+//Function for when the ball falls of the screen, the ball will be reset
 void handleBallOffBottom() {
   if (ballOffBottom()) {
     ballX = width/2;
@@ -117,10 +131,12 @@ void handleBallOffBottom() {
   }
 }
 
+//Boolean function that checks if the ball falls out of the screen, if it does it calls the function to reset it
 boolean ballOffBottom() {
   return (ballY - ballSize/2 > height);
 }
 
+//Function for how the ball behaves whenit hits the left, right or top wall, if it does it moves in opposite dirrection
 void handleBallHitWall() {
   if (ballX - ballSize/2 < 0) {
     ballX = 0 + ballSize/2;
@@ -136,6 +152,7 @@ void handleBallHitWall() {
   }
 }
 
+//Function that controls the paddle when the left and right arrows are pressed
 void keyPressed() {
   if (keyCode == LEFT) {
     paddleVX = -paddleSpeed;
@@ -144,6 +161,7 @@ void keyPressed() {
   }
 }
 
+//Funtions that controls left and right movements when the keys are released 
 void keyReleased() {
   if (keyCode == LEFT && paddleVX < 0) {
     paddleVX = 0;
