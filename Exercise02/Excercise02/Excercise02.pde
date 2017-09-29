@@ -2,17 +2,17 @@
 color backgroundColor = color(0);
 
 //Variables for static background
-int numStatic = 1000;
-int staticSizeMin = 1;
-int staticSizeMax = 3;
-color staticColor = color(200);
+int numStatic = 1; //CHANGED lower static
+int staticSizeMin = 0; //CHANGED min to 0
+int staticSizeMax = 20; //CHANGED max size to 20
+color staticColor = color(200,40,30); //CHANGED color of static to dark red
 
 //Variables of paddle dimensions, speed of paddle, and color
 int paddleX;
 int paddleY;
 int paddleVX;
 int paddleSpeed = 10;
-int paddleWidth = 128;
+int paddleWidth = 155; //CHANGED - made longer
 int paddleHeight = 16;
 color paddleColor = color(255);
 
@@ -25,14 +25,14 @@ int ballSpeed = 5;
 int ballSize = 16;
 color ballColor = color(180,80,80); //CHANGED - added color to the ball 
 
-//CHANGED
-int triX;
-int triY;
-int triVX;
-int triVY;
-int triSize = 24;
-int triSpeed = 8;
-int triColor = color(180,80,80);
+//CHANGED - added new box
+int boxX;
+int boxY;
+int boxVX;
+int boxVY;
+int boxSize = 44;
+int boxSpeed = 8;
+int boxColor = color(180,80,80);
 
 
  
@@ -43,6 +43,7 @@ void setup() {
   
   setupPaddle();
   setupBall();
+  setupbox();
 }
 
 //Functions for the paddle
@@ -60,17 +61,15 @@ void setupBall() {
   ballVY = ballSpeed;
 }
 
-//CHANGED
-void setupTriangle() {
-  triX = width/2;
-  triY = height/2;
-  triVX = triSpeed;
-  triVY = triSpeed;
+//CHANGED setup for new box
+void setupbox() {
+  boxX = width/2;
+  boxY = height/2;
+  boxVX = boxSpeed;
+  boxVY = boxSpeed;
   
 }
 
-  
-  
 
 //Calling the functions for the static, ball, and paddle
 void draw() {
@@ -83,6 +82,10 @@ void draw() {
 
   drawPaddle();
   drawBall();
+  
+  drawbox();
+  updatebox();
+  
 }
 
 //Drawing the loop of static with arguments
@@ -111,15 +114,16 @@ void updateBall() {
   handleBallHitPaddle();
   handleBallHitWall();
   handleBallOffBottom();
+  
 }
 
-//CHANGED
-void updateTriangle() {
-  triX += triVX;
-  triY += triVY;
-  handleBallHitPaddle();
-  handleBallHitWall();
-  handleBallOffBottom();
+//CHANGED functions for box movements 
+void updatebox() {
+  boxX += boxVX;
+  boxY += boxVY;
+  handleBoxHitPaddle();
+  handleboxHitWall();
+  handleboxOffBottom();
 }
   
 
@@ -136,9 +140,19 @@ void drawBall() {
   rectMode(CENTER);
   noStroke();
   fill(ballColor);
-  rect(ballX, ballY, ballSize, ballSize);
-  
+  rect(ballX, ballY, ballSize, ballSize); 
 }
+
+//CHANGED - function that draws box
+void drawbox() {
+  rectMode(CENTER);
+  stroke(255);
+  fill(boxColor);
+  rect(boxX, boxY, boxSize, boxSize);
+}
+
+
+    
 
 //Function for how the ball behaves when it hits the paddle
 void handleBallHitPaddle() {
@@ -147,6 +161,19 @@ void handleBallHitPaddle() {
     ballVY = -ballVY;
     ballColor = ballColor + 50;//CHANGED - when ball hits paddle the color value go up by 50
   }
+}
+
+//CHANGED - function for how the box behaves when it hits the paddle - NEW FUNCTION box gets bigger and smaller when hit
+void handleBoxHitPaddle() {
+  if (boxOverlapsPaddle()) {
+    boxY = paddleY - paddleHeight/2 - boxSize/2;
+    boxVY = -boxVY;
+    boxColor = boxColor -80; 
+    boxSize = boxSize +5;
+    boxSize = paddleWidth - boxSize/1;
+  }
+ 
+
 }
 
 //Boolean function that checks if the ball hits the paddle, if it does it returns true, if not it returns false
@@ -159,6 +186,18 @@ boolean ballOverlapsPaddle() {
   return false;
 }
 
+
+
+//CHANGED function that checks if the box hits the paddle, if it does it returns true, if not it returns false
+boolean boxOverlapsPaddle() {
+  if (boxX - boxSize/2 > paddleX - paddleWidth/2 && boxX + boxSize/2 < paddleX + paddleWidth/2) {
+    if (boxY > paddleY - paddleHeight/2) {
+      return true;
+    }
+  }
+  return false;
+ }
+
 //Function for when the ball falls of the screen, the ball will be reset
 void handleBallOffBottom() {
   if (ballOffBottom()) {
@@ -167,12 +206,26 @@ void handleBallOffBottom() {
   }
 }
 
+//CHANGED - where the box falls from the screen
+void handleboxOffBottom() {
+  if (boxOffBottom()) {
+    boxX = width/8;
+    boxY = height/5; 
+  }
+}
+
+
 //Boolean function that checks if the ball falls out of the screen, if it does it calls the function to reset it
 boolean ballOffBottom() {
   return (ballY - ballSize/2 > height);
 }
 
-//Function for how the ball behaves whenit hits the left, right or top wall, if it does it moves in opposite dirrection
+//CHANGED Checks if the ball falls out off the screen, if it does it calls the function to reset it
+boolean boxOffBottom() {
+  return (boxY - boxSize/2 > height);
+}
+
+//Function for how the ball behaves when it hits the left, right or top wall, if it does it moves in opposite dirrection
 void handleBallHitWall() {
   if (ballX - ballSize/2 < 0) {
     ballX = 0 + ballSize/2;
@@ -187,6 +240,24 @@ void handleBallHitWall() {
     ballVY = -ballVY;
   }
 }
+
+//CHANGED - how the ball behaves when it hits the left, right or top wall, if it does it moves in opposite dirrection
+void handleboxHitWall() {
+  if (boxX - boxSize/2 < 0) {
+    boxX = 0 + boxSize/2;
+    boxVX = -boxVX;
+  } else if (boxX + boxSize/2 > width) {
+    boxX = width - boxSize/2;
+    boxVX = -boxVY;
+  }
+  
+  if (boxY - boxSize/2 < 0) {
+    boxY = 0 + boxSize/2; 
+    boxVY = -boxVY;
+  }
+}
+
+
 
 //Function that controls the paddle when the left and right arrows are pressed
 void keyPressed() {
