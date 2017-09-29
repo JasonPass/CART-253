@@ -36,7 +36,6 @@ int boxColor = color(180, 80, 80);
 
 
 
-
 //The setup for the size, paddle position, and ball position
 void setup() {
   size(640, 480);
@@ -68,7 +67,6 @@ void setupbox() {
   boxVX = boxSpeed;
   boxVY = boxSpeed;
 }
-
 
 //Calling the functions for the static, ball, and paddle
 void draw() {
@@ -123,7 +121,6 @@ void updatebox() {
   handleboxOffBottom();
 }
 
-
 //Function for drawing paddle
 void drawPaddle() {
   rectMode(CENTER);
@@ -147,9 +144,6 @@ void drawbox() {
   fill(boxColor);
   rect(boxX, boxY, boxSize, boxSize);
 }
-
-
-
 
 //Function for how the ball behaves when it hits the paddle
 void handleBallHitPaddle() {
@@ -181,8 +175,6 @@ boolean ballOverlapsPaddle() {
   return false;
 }
 
-
-
 //CHANGED function that checks if the box hits the paddle, if it does it returns true, if not it returns false
 boolean boxOverlapsPaddle() {
   if (boxX - boxSize/2 > paddleX - paddleWidth/2 && boxX + boxSize/2 < paddleX + paddleWidth/2) {
@@ -208,7 +200,6 @@ void handleboxOffBottom() {
     boxY = height/5;
   }
 }
-
 
 //Boolean function that checks if the ball falls out of the screen, if it does it calls the function to reset it
 boolean ballOffBottom() {
@@ -251,8 +242,6 @@ void handleboxHitWall() {
     boxVY = -boxVY;
   }
 }
-
-
 
 //Function that controls the paddle when the left and right arrows are pressed
 void keyPressed() {
