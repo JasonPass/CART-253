@@ -23,7 +23,19 @@ int ballVX;
 int ballVY;
 int ballSpeed = 5;
 int ballSize = 16;
-color ballColor = color(255);
+color ballColor = color(180,80,80); //CHANGED - added color to the ball 
+
+//CHANGED
+int triX;
+int triY;
+int triVX;
+int triVY;
+int triSize = 24;
+int triSpeed = 8;
+int triColor = color(180,80,80);
+
+
+ 
 
 //The setup for the size, paddle position, and ball position
 void setup() {
@@ -47,6 +59,18 @@ void setupBall() {
   ballVX = ballSpeed;
   ballVY = ballSpeed;
 }
+
+//CHANGED
+void setupTriangle() {
+  triX = width/2;
+  triY = height/2;
+  triVX = triSpeed;
+  triVY = triSpeed;
+  
+}
+
+  
+  
 
 //Calling the functions for the static, ball, and paddle
 void draw() {
@@ -89,6 +113,16 @@ void updateBall() {
   handleBallOffBottom();
 }
 
+//CHANGED
+void updateTriangle() {
+  triX += triVX;
+  triY += triVY;
+  handleBallHitPaddle();
+  handleBallHitWall();
+  handleBallOffBottom();
+}
+  
+
 //Function for drawing paddle
 void drawPaddle() {
   rectMode(CENTER);
@@ -103,6 +137,7 @@ void drawBall() {
   noStroke();
   fill(ballColor);
   rect(ballX, ballY, ballSize, ballSize);
+  
 }
 
 //Function for how the ball behaves when it hits the paddle
@@ -110,6 +145,7 @@ void handleBallHitPaddle() {
   if (ballOverlapsPaddle()) {
     ballY = paddleY - paddleHeight/2 - ballSize/2;
     ballVY = -ballVY;
+    ballColor = ballColor + 50;//CHANGED - when ball hits paddle the color value go up by 50
   }
 }
 
