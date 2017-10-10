@@ -1,6 +1,6 @@
 class Bouncer {
 
-// The constructor for th Bouncer object  
+// The variables for the Bouncer objects  
  float red = random (255);
  int x;
  int y;
@@ -51,6 +51,7 @@ class Bouncer {
    y = constrain(y,size/2,height-size/2);
  }
  
+ //Bouncer colors gets brighter when mouse is over them
  void handleMouse() {
    if (dist(mouseX,mouseY,x,y) < size/2) {
     fillColor = hoverColor; 
