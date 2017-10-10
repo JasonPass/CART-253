@@ -1,7 +1,6 @@
 class Bouncer {
-
 // The variables for the Bouncer objects  
- float red = random (255);
+ color clickColor = color (255, 255, 255, 255); 
  int x;
  int y;
  int vx;
@@ -11,7 +10,6 @@ class Bouncer {
  color defaultColor;
  color hoverColor;
  
-
  //Set up for the Bouncer
  Bouncer(int tempX, int tempY, int tempVX, int tempVY, int tempSize, color tempDefaultColor, color tempHoverColor) {
    x = tempX;
@@ -37,16 +35,14 @@ class Bouncer {
  void handleBounce() {
    if (x - size/2 < 0 || x + size/2 > width) {
     vx = -vx; 
-    size = size - 5;
-    
+    size = size - 25;
     
    }
    
    if (y - size/2 < 0 || y + size/2 > height) {
      vy = -vy;
-    size = size - 5;
-   }
-   
+    size = size - 5;// CNAHGED - size goes down by 5 when bounccers hit walls(eventually go inverse and get big) 
+ }
    x = constrain(x,size/2,width-size/2);
    y = constrain(y,size/2,height-size/2);
  }
@@ -61,10 +57,18 @@ class Bouncer {
    }
  }
  
+//CHANGED - mouseClicked function adds 1 to size and changes colors, opacity randomly
+void mouseClicked() {
+  if(mousePressed == true) {    
+  size = size + 1;
+  clickColor = color (random(255), random(255), random(255), random (20,180));
+ }
+}
+ 
 // Draws the Bouncers to the screen
  void draw() {
    noStroke();
-   fill(fillColor);
+   fill(clickColor);// CHANGED - fill color is now random when mouse clicked
    ellipse(x,y,size,size);
  }
 }

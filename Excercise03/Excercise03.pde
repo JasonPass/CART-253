@@ -1,5 +1,6 @@
 //Color of background
-color backgroundColor = color(200,150,150);
+int size;
+color backgroundColor = color(255,255,255);
 //The two bouncing objects
 Bouncer bouncer;
 Bouncer bouncer2;
@@ -18,4 +19,7 @@ void draw() {
   bouncer2.update();
   bouncer.draw(); //Constructor for drawing bouncer1
   bouncer2.draw(); //Constructor for drawing bouncer2
+  bouncer.mouseClicked();//CHANGED - added mouseClicked constructor for bouncer
+  bouncer2.mouseClicked();//CHANGED - added mouseClicked constructor for bouncer2
+  
 }
