@@ -17,9 +17,9 @@ void setup() {
 void draw() {
   bouncer.update();
   bouncer2.update();
-  bouncer.draw(); //Constructor for drawing bouncer1
-  bouncer2.draw(); //Constructor for drawing bouncer2
-  bouncer.mouseClicked();//CHANGED - added mouseClicked constructor for bouncer
-  bouncer2.mouseClicked();//CHANGED - added mouseClicked constructor for bouncer2
+  bouncer.draw(); // for drawing bouncer1
+  bouncer2.draw(); // for drawing bouncer2
+  bouncer.mouseClicked();//CHANGED - added mouseClicked for bouncer
+  bouncer2.mouseClicked();//CHANGED - added mouseClicked for bouncer2
   
 }
