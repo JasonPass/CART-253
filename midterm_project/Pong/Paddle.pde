@@ -21,6 +21,7 @@ class Paddle {
   // The fill color of the paddle
   color paddleColor = color(255);
 
+
   // The characters used to make the paddle move up and down, defined in constructor
   char upKey;
   char downKey;
@@ -43,10 +44,8 @@ class Paddle {
     vy = 0;
 
 
-    upKey2 = _upKey;
-    upKey = upKey2;
-    downKey2 = _downKey;
-    downKey = downKey2;
+    upKey = _upKey;
+    downKey = _downKey;
     
    
     

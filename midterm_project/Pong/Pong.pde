@@ -19,13 +19,13 @@ Ball ball;
 int PADDLE_INSET = 8;
 
 //Quote that appears for winner
-String [] quotes = { "If you are worrying about being desperate you are probably very wise", "food can be as beautiful as a queen from hell", "You don't need to have to want it enough in order to get rid of insanity","With common confusion comes common rhythm", "If you laugh at chaos, enslave people who are different from you","Advertisers can make certain people have sex with something that nobody has ever had sex with","Consider that you're frustrated with how the world works and remember to look into the mirror and ask who am I?", "Even weirdoes overestimate psychic powers", "Don't laugh. Allow yourself to stay in touch with a moron.", "Thinking outside the box is to assail what we know is unassailable.",
-};
+//String [] quotes = { "If you are worrying about being desperate you are probably very wise", "food can be as beautiful as a queen from hell", "You don't need to have to want it enough in order to get rid of insanity","With common confusion comes common rhythm", "If you laugh at chaos, enslave people who are different from you","Advertisers can make certain people have sex with something that nobody has ever had sex with","Consider that you're frustrated with how the world works and remember to look into the mirror and ask who am I?", "Even weirdoes overestimate psychic powers", "Don't laugh. Allow yourself to stay in touch with a moron.", "Thinking outside the box is to assail what we know is unassailable.",
+//};
 
-String [] displayQuotes;
+//String [] displayQuotes;
 
-boolean showText =false;
-int displayIndex =0;
+//boolean showText =false;
+//int displayIndex =0;
 
 // The background colour during play (black)
 color backgroundColor = color(0);
@@ -70,7 +70,7 @@ void draw() {
   // Fill the background each frame so we have animation
   background(backgroundColor);
   
-    if(showText ==true)
+   // if(showText ==true)
 
   // Update the paddles and ball by calling their update methods
   leftPaddle.update();
@@ -154,11 +154,11 @@ void showWinner ( String winningPlayerText, color winningPlayerColor ) {
 }
 
 void reset () {
-      ball.reset();
-   
+     
+   ball.reset();
   
-  if (keyPressed || key == 'r'){
- 
+  if (keyPressed && key == 'r'){
+
     trackPointsP1 = 0;
     trackPointsP2 = 0;
     
