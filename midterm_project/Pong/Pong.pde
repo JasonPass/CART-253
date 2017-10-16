@@ -19,8 +19,9 @@ Ball ball;
 int PADDLE_INSET = 8;
 
 //Quote that appears for winner
-//String [] quotes = { "If you are worrying about being desperate you are probably very wise", "food can be as beautiful as a queen from hell", "You don't need to have to want it enough in order to get rid of insanity","With common confusion comes common rhythm", "If you laugh at chaos, enslave people who are different from you","Advertisers can make certain people have sex with something that nobody has ever had sex with","Consider that you're frustrated with how the world works and remember to look into the mirror and ask who am I?", "Even weirdoes overestimate psychic powers", "Don't laugh. Allow yourself to stay in touch with a moron.", "Thinking outside the box is to assail what we know is unassailable.",
-//};
+String [] quotes = { "If you are worrying about being desperate you are probably very wise", "food can be as beautiful as a queen from hell", "You don't need to have to want it enough in order to get rid of insanity","With common confusion comes common rhythm", "If you laugh at chaos, enslave people who are different from you","Advertisers can make certain people have sex with something that nobody has ever had sex with","Consider that you're frustrated with how the world works and remember to look into the mirror and ask who am I?", "Even weirdoes overestimate psychic powers", "Don't laugh. Allow yourself to stay in touch with a moron.", "Thinking outside the box is to assail what we know is unassailable."};
+
+PImage img;
 
 //String [] displayQuotes;
 
@@ -46,8 +47,9 @@ int winner = 10;
 
 void setup() {
   // Set the size
-  size(640, 480);
-
+  size(800, 500);
+  img = loadImage("space.background.jpg");
+  //img = loadImage("Mini-bomb.png");
   // Create the paddles on either side of the screen. 
   // Use PADDLE_INSET to to position them on x, position them both at centre on y
   // Also pass through the two keys used to control 'up' and 'down' respectively
@@ -68,7 +70,7 @@ void setup() {
 
 void draw() {
   // Fill the background each frame so we have animation
-  background(backgroundColor);
+  background(img);
   
    // if(showText ==true)
 
@@ -121,7 +123,7 @@ void displayPoints() {
 void winningPlayer() {
   
   if (trackPointsP1 == winner) {
-    showWinner("YOU WIN!",color (255,255,255));
+    showWinner("Player 2 wins!",color (255,255,255));
     
    // gameDone = true;
     
@@ -130,9 +132,9 @@ void winningPlayer() {
  }
 
   if (trackPointsP2 == winner) {
-    showWinner("YOU WIN!",color (255,255,255));
+    showWinner("Player 1 wins!",color (255,255,255));
     
-   // gameDone = true;
+    //gameDone = true;
     
    reset(); //<>//
   }
@@ -147,9 +149,9 @@ void showWinner ( String winningPlayerText, color winningPlayerColor ) {
   // Set text of player who wins and location
   fill(winningPlayerColor);
   text(winningPlayerText, width/2, (height/2 + 80));
-  textSize(20);
-  text ("R Key to reset", width/2, (height/2 + 140));
- //<>//
+  textSize(20); //<>//
+  text ("R Key to restart", width/2, (height/2 + 140));
+
   
 }
 

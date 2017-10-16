@@ -10,8 +10,10 @@ class Ball {
   // Default values for speed and size
   int SPEED = 5;
   int SIZE = 16;
-
-  // The location of the ball
+ 
+  
+  
+  // Thean of the ball
   int x;
   int y;
 
