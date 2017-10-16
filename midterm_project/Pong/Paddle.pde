@@ -24,6 +24,9 @@ class Paddle {
   // The characters used to make the paddle move up and down, defined in constructor
   char upKey;
   char downKey;
+  
+  char downKey2;
+  char upKey2;
 
 
   /////////////// Constructor ///////////////
@@ -39,9 +42,15 @@ class Paddle {
     vx = 0;
     vy = 0;
 
-    upKey = _upKey;
-    downKey = _downKey;
-  }
+
+    upKey2 = _upKey;
+    upKey = upKey2;
+    downKey2 = _downKey;
+    downKey = downKey2;
+    
+   
+    
+}
 
 
   /////////////// Methods ///////////////
@@ -68,7 +77,6 @@ class Paddle {
     noStroke();
     fill(paddleColor);
     rectMode(CENTER);
-    
     // Draw the paddle as a rectangle
     rect(x, y, WIDTH, HEIGHT);
   }
@@ -87,8 +95,11 @@ class Paddle {
       // If so we want a positive y velocity
       vy = SPEED;
     }
-  }
+  
+ 
 
+    
+  }
   // keyReleased()
   //
   // Called when keyReleased is called in the main program

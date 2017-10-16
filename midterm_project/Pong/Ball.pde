@@ -81,14 +81,36 @@ class Ball {
   // or a String (e.g. "ON SCREEN", "OFF LEFT", "OFF RIGHT")
   
   boolean isOffScreen() {
-    return (x + SIZE/2 < 0 || x - SIZE/2 > width);
+   //return (x + SIZE/2 < 0 || x - SIZE/2 > width); 
+    // Check if the ball is off the left side of the window by checking if it's location is less than 0.
+    if (x + SIZE < 0) {
+      // If it is, make the right player's score increase by 1
+      trackPointsP1++;
+
+
+      return true;
+    } // Check if the ball is off the right side of the window by checking if it's location is greater than the width of the window.
+    else if (x - SIZE > width) {
+      // If it is, make the left player's score increase by 1
+      trackPointsP2++;
+
+
+      return true;
+    } else {
+      // If all is not true, return false.
+      return false;
+    }
   }
 
+
+  
   // collide(Paddle paddle)
   //
   // Checks whether this ball is colliding with the paddle passed as an argument
   // If it is, it makes the ball bounce away from the paddle by reversing its
   // x velocity
+
+  
 
   void collide(Paddle paddle) {
     // Calculate possible overlaps with the paddle side by side
@@ -121,7 +143,6 @@ class Ball {
     noStroke();
     fill(ballColor);
     rectMode(CENTER);
-
     // Draw the ball
     rect(x, y, SIZE, SIZE);
   }

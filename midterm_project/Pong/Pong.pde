@@ -1,3 +1,4 @@
+
 // Pong
 //
 // A simple version of Pong using object-oriented programming.
@@ -17,9 +18,27 @@ Ball ball;
 // The distance from the edge of the window a paddle should be
 int PADDLE_INSET = 8;
 
+//Quote that appears for winner
+String [] quotes = { "If you are worrying about being desperate you are probably very wise", "food can be as beautiful as a queen from hell", "You don't need to have to want it enough in order to get rid of insanity","With common confusion comes common rhythm", "If you laugh at chaos, enslave people who are different from you","Advertisers can make certain people have sex with something that nobody has ever had sex with","Consider that you're frustrated with how the world works and remember to look into the mirror and ask who am I?", "Even weirdoes overestimate psychic powers", "Don't laugh. Allow yourself to stay in touch with a moron.", "Thinking outside the box is to assail what we know is unassailable.",
+};
+
+String [] displayQuotes;
+
+boolean showText =false;
+int displayIndex =0;
+
 // The background colour during play (black)
 color backgroundColor = color(0);
 
+int pointsP1 = 0;
+int pointsP2 = 0;
+
+int trackPointsP1;
+int trackPointsP2;
+
+int winner = 10;
+
+//boolean gameDone = false;
 
 // setup()
 //
@@ -34,11 +53,12 @@ void setup() {
   // Also pass through the two keys used to control 'up' and 'down' respectively
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
-  leftPaddle = new Paddle(PADDLE_INSET, height/2, '1', 'q');
+  leftPaddle = new Paddle(PADDLE_INSET, height/2, '2', 'w');
   rightPaddle = new Paddle(width - PADDLE_INSET, height/2, '0', 'p');
 
   // Create the ball at the centre of the screen
   ball = new Ball(width/2, height/2);
+  
 }
 
 // draw()
@@ -49,11 +69,18 @@ void setup() {
 void draw() {
   // Fill the background each frame so we have animation
   background(backgroundColor);
+  
+    if(showText ==true)
 
   // Update the paddles and ball by calling their update methods
   leftPaddle.update();
   rightPaddle.update();
   ball.update();
+  //Shows the points
+  displayPoints();
+  
+  //Who wins
+  winningPlayer();
 
   // Check if the ball has collided with either paddle
   ball.collide(leftPaddle);
@@ -77,10 +104,76 @@ void draw() {
 // so when the keypress is detected in the main program we need to
 // tell the paddles
 
+//
+void displayPoints() {
+  fill(255, 255, 255);
+  // Horizontal alignment and vertical alignment will be centered
+  textAlign(CENTER);
+  
+  textSize(25);
+  
+  text(trackPointsP1, (width/4), 30);
+  
+  text(trackPointsP2, width - (width/4), 30);
+}
+
+
+void winningPlayer() {
+  
+  if (trackPointsP1 == winner) {
+    showWinner("YOU WIN!",color (255,255,255));
+    
+   // gameDone = true;
+    
+   reset();
+    
+ }
+
+  if (trackPointsP2 == winner) {
+    showWinner("YOU WIN!",color (255,255,255));
+    
+   // gameDone = true;
+    
+   reset(); //<>//
+  }
+}
+
+
+void showWinner ( String winningPlayerText, color winningPlayerColor ) {
+  
+  fill(255, 255, 255);
+  // Set text and location
+  text("YOU WIN!", width/2, height/3);
+  // Set text of player who wins and location
+  fill(winningPlayerColor);
+  text(winningPlayerText, width/2, (height/2 + 80));
+  textSize(20);
+  text ("R Key to reset", width/2, (height/2 + 140));
+ //<>//
+  
+}
+
+void reset () {
+      ball.reset();
+   
+  
+  if (keyPressed || key == 'r'){
+ 
+    trackPointsP1 = 0;
+    trackPointsP2 = 0;
+    
+    //gameDone = false;
+  }
+  }  
+
+
 void keyPressed() {
+  
+  
   // Just call both paddles' own keyPressed methods
   leftPaddle.keyPressed();
   rightPaddle.keyPressed();
+  
 }
 
 // keyReleased()
