@@ -51,7 +51,7 @@ int winner = 10;
 void setup() {
   // Set the size
   size(800, 500);
-  img = loadImage("space.background.jpg");
+  img = loadImage("space.background.png");
   //img2 = loadImage ("TEST2.png");
   //img = loadImage("Mini-bomb.png");
   // Create the paddles on either side of the screen. 
@@ -177,13 +177,16 @@ void showWinner ( String winningPlayerText, color winningPlayerColor ) {
 void reset () {
      
    ball.reset();
-  
+   
+
   if (keyPressed && key == 'r'){
+    
+   ball.vx = ball.resetSPEED;
+   ball.vy = ball.resetSPEED;
 
     trackPointsP1 = 0;
     trackPointsP2 = 0;
-  //  ball.vx = 5;
-  //  ball.vy =5;
+
    // gameDone = false;
   }
   }  

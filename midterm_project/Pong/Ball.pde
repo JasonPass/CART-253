@@ -9,8 +9,9 @@ class Ball {
 
   // Default values for speed and size
   int SPEED = 5;
+  int resetSPEED = 5;
   int SIZE = 80;
- 
+  //int default 
   int HEIGHT = 70;
   // Thean of the ball
   int x;
@@ -60,6 +61,7 @@ class Ball {
 
     // Check if the ball is going off the top of bottom
     if (y - SIZE/2 < 0 || y + SIZE/2 > height) {
+      
       // If it is, then make it "bounce" by reversing its velocity
       vy = -vy;
     }
@@ -73,6 +75,7 @@ class Ball {
   void reset() {
     x = width/2;
     y = height/2;
+   
   }
 
 
@@ -91,7 +94,7 @@ class Ball {
       // If it is, make the right player's score increase by 1
       trackPointsP1++;
       SIZE = 80;
-      SPEED += 10;
+     SPEED = SPEED + 15;
    //  vx += 5;
      vy++ ;
      
@@ -102,7 +105,7 @@ class Ball {
       // If it is, make the left player's score increase by 1
       trackPointsP2++;
       SIZE = 80;
-      SPEED += 10;
+     SPEED = SPEED + 15;
       vx++ ;
       
      // vy += 5;
@@ -137,7 +140,6 @@ class Ball {
     
     // Check if the ball overlaps with the paddle
     if (insideLeft && insideRight && insideTop && insideBottom) {
-     
       // If it was moving to the left
       if (vx < 0) {
         // Reset its position to align with the right side of the paddle
@@ -150,7 +152,6 @@ class Ball {
         // Reset its position to align with the left side of the paddle
         x = paddle.x - paddle.WIDTH/2 - SIZE/2;
         SIZE -= 10;
-        
       //   if (SIZE <= 0) {
        //    SIZE = 80;
         
@@ -158,7 +159,7 @@ class Ball {
       }
       // And make it bounce
       vx = -vx;
-     
+     SPEED += 50;
 
     }
   }
@@ -178,7 +179,7 @@ fill (255,255,255);
 fill (ballColorP1);
 fill (ballColorP2);
 
- ellipseMode(CENTER);
+ rectMode(CENTER);
     // Draw the ball
  ellipse(x, y, SIZE, SIZE);
   // image(img2, x, y, 10, 10);
