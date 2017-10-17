@@ -9,10 +9,9 @@ class Ball {
 
   // Default values for speed and size
   int SPEED = 5;
-  int SIZE = 16;
+  int SIZE = 80;
  
-  
-  
+  int HEIGHT = 70;
   // Thean of the ball
   int x;
   int y;
@@ -22,7 +21,8 @@ class Ball {
   int vy;
 
   // The colour of the ball
-  color ballColor = color(255);
+  color ballColorP1 = color(200,100,40);
+  color ballColorP2 = color(0,0,255);
 
 
   /////////////// Constructor ///////////////
@@ -56,14 +56,15 @@ class Ball {
     // First update the location based on the velocity (so the ball moves)
     x += vx;
     y += vy;
+   
 
     // Check if the ball is going off the top of bottom
     if (y - SIZE/2 < 0 || y + SIZE/2 > height) {
       // If it is, then make it "bounce" by reversing its velocity
       vy = -vy;
     }
-  }
-  
+       }
+
   // reset()
   //
   // Resets the ball to the centre of the screen.
@@ -73,7 +74,8 @@ class Ball {
     x = width/2;
     y = height/2;
   }
-  
+
+
   // isOffScreen()
   //
   // Returns true if the ball is off the left or right side of the window
@@ -88,19 +90,30 @@ class Ball {
     if (x + SIZE < 0) {
       // If it is, make the right player's score increase by 1
       trackPointsP1++;
-
+      SIZE = 80;
+      SPEED += 10;
+   //  vx += 5;
+     vy++ ;
+     
 
       return true;
     } // Check if the ball is off the right side of the window by checking if it's location is greater than the width of the window.
     else if (x - SIZE > width) {
       // If it is, make the left player's score increase by 1
       trackPointsP2++;
+      SIZE = 80;
+      SPEED += 10;
+      vx++ ;
+      
+     // vy += 5;
 
 
       return true;
     } else {
+      
       // If all is not true, return false.
       return false;
+      
     }
   }
 
@@ -116,25 +129,42 @@ class Ball {
 
   void collide(Paddle paddle) {
     // Calculate possible overlaps with the paddle side by side
-    boolean insideLeft = (x + SIZE/2 > paddle.x - paddle.WIDTH/2);
+    boolean insideLeft = (x + SIZE/2 > paddle.x - paddle.WIDTH/ 2);
     boolean insideRight = (x - SIZE/2 < paddle.x + paddle.WIDTH/2);
     boolean insideTop = (y + SIZE/2 > paddle.y - paddle.HEIGHT/2);
     boolean insideBottom = (y - SIZE/2 < paddle.y + paddle.HEIGHT/2);
+       
     
     // Check if the ball overlaps with the paddle
     if (insideLeft && insideRight && insideTop && insideBottom) {
+     
       // If it was moving to the left
       if (vx < 0) {
         // Reset its position to align with the right side of the paddle
         x = paddle.x + paddle.WIDTH/2 + SIZE/2;
+         SIZE -= 10;
+       
+         
       } else if (vx > 0) {
+      
         // Reset its position to align with the left side of the paddle
         x = paddle.x - paddle.WIDTH/2 - SIZE/2;
+        SIZE -= 10;
+        
+      //   if (SIZE <= 0) {
+       //    SIZE = 80;
+        
+        
       }
       // And make it bounce
       vx = -vx;
+     
+
     }
   }
+  
+  
+ // }
 
   // display()
   //
@@ -142,10 +172,15 @@ class Ball {
 
   void display() {
     // Set up the appearance of the ball (no stroke, a fill, and rectMode as CENTER)
+    
     noStroke();
-    fill(ballColor);
-    rectMode(CENTER);
+fill (255,255,255);
+fill (ballColorP1);
+fill (ballColorP2);
+
+ ellipseMode(CENTER);
     // Draw the ball
-    rect(x, y, SIZE, SIZE);
+ ellipse(x, y, SIZE, SIZE);
+  // image(img2, x, y, 10, 10);
   }
 }

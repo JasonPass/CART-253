@@ -22,6 +22,7 @@ int PADDLE_INSET = 8;
 String [] quotes = { "If you are worrying about being desperate you are probably very wise", "food can be as beautiful as a queen from hell", "You don't need to have to want it enough in order to get rid of insanity","With common confusion comes common rhythm", "If you laugh at chaos, enslave people who are different from you","Advertisers can make certain people have sex with something that nobody has ever had sex with","Consider that you're frustrated with how the world works and remember to look into the mirror and ask who am I?", "Even weirdoes overestimate psychic powers", "Don't laugh. Allow yourself to stay in touch with a moron.", "Thinking outside the box is to assail what we know is unassailable."};
 
 PImage img;
+//PImage img2;
 
 //String [] displayQuotes;
 
@@ -39,6 +40,8 @@ int trackPointsP2;
 
 int winner = 10;
 
+  //color ballColorP1 = color(200,100,40);
+//  color ballColorP2 = color(0,0,255);
 //boolean gameDone = false;
 
 // setup()
@@ -49,6 +52,7 @@ void setup() {
   // Set the size
   size(800, 500);
   img = loadImage("space.background.jpg");
+  //img2 = loadImage ("TEST2.png");
   //img = loadImage("Mini-bomb.png");
   // Create the paddles on either side of the screen. 
   // Use PADDLE_INSET to to position them on x, position them both at centre on y
@@ -81,25 +85,34 @@ void draw() {
   //Shows the points
   displayPoints();
   
+  
   //Who wins
   winningPlayer();
 
   // Check if the ball has collided with either paddle
+
   ball.collide(leftPaddle);
+  
   ball.collide(rightPaddle);
 
   // Check if the ball has gone off the screen
   if (ball.isOffScreen()) {
     // If it has, reset the ball
+    
     ball.reset();
+    //ball.SPEED ++;
   }
 
   // Display the paddles and the ball
   leftPaddle.display();
   rightPaddle.display();
   ball.display();
-}
-
+  
+ // if (gameDone) {
+   // ball.SPEED = 0;
+  }
+  
+//}
 // keyPressed()
 //
 // The paddles need to know if they should move based on a keypress
@@ -124,7 +137,7 @@ void winningPlayer() {
   
   if (trackPointsP1 == winner) {
     showWinner("Player 2 wins!",color (255,255,255));
-    
+   // ball.SPEED = 5;
    // gameDone = true;
     
    reset();
@@ -135,7 +148,7 @@ void winningPlayer() {
     showWinner("Player 1 wins!",color (255,255,255));
     
     //gameDone = true;
-    
+  //  ball.SPEED = 5;
    reset(); //<>//
   }
 }
@@ -155,6 +168,12 @@ void showWinner ( String winningPlayerText, color winningPlayerColor ) {
   
 }
 
+//void colorChange () {
+// if collide(Paddle paddle) == true 
+ 
+  
+//}
+
 void reset () {
      
    ball.reset();
@@ -163,10 +182,12 @@ void reset () {
 
     trackPointsP1 = 0;
     trackPointsP2 = 0;
-    
-    //gameDone = false;
+  //  ball.vx = 5;
+  //  ball.vy =5;
+   // gameDone = false;
   }
   }  
+
 
 
 void keyPressed() {
