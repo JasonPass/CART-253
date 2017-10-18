@@ -1,3 +1,6 @@
+import processing.sound.*; //<>// //<>//
+
+SoundFile file;
 
 // Pong
 //
@@ -18,17 +21,17 @@ Ball ball;
 // The distance from the edge of the window a paddle should be
 int PADDLE_INSET = 8;
 
-//Quote that appears for winner
-String [] quotes = { "If you are worrying about being desperate you are probably very wise", "food can be as beautiful as a queen from hell", "You don't need to have to want it enough in order to get rid of insanity","With common confusion comes common rhythm", "If you laugh at chaos, enslave people who are different from you","Advertisers can make certain people have sex with something that nobody has ever had sex with","Consider that you're frustrated with how the world works and remember to look into the mirror and ask who am I?", "Even weirdoes overestimate psychic powers", "Don't laugh. Allow yourself to stay in touch with a moron.", "Thinking outside the box is to assail what we know is unassailable."};
-
 PImage img;
-//PImage img2;
+
+//Quote that appears for winner
+//String [] quotes = { "If you are worrying about being desperate you are probably very wise", "food can be as beautiful as a queen from hell", "You don't need to have to want it enough in order to get rid of insanity","With common confusion comes common rhythm", "If you laugh at chaos, enslave people who are different from you","Advertisers can make certain people have sex with something that nobody has ever had sex with","Consider that you're frustrated with how the world works and remember to look into the mirror and ask who am I?", "Even weirdoes overestimate psychic powers", "Don't laugh. Allow yourself to stay in touch with a moron.", "Thinking outside the box is to assail what we know is unassailable."};
 
 //String [] displayQuotes;
 
 //boolean showText =false;
 //int displayIndex =0;
 
+///////////////////////////////
 // The background colour during play (black)
 color backgroundColor = color(0);
 
@@ -39,6 +42,11 @@ int trackPointsP1;
 int trackPointsP2;
 
 int winner = 10;
+
+PFont font;
+
+//CHANGED - font for score
+
 
   //color ballColorP1 = color(200,100,40);
 //  color ballColorP2 = color(0,0,255);
@@ -51,6 +59,7 @@ int winner = 10;
 void setup() {
   // Set the size
   size(800, 500);
+ file = new SoundFile (this, "beep.mp3");
   img = loadImage("space.background.png");
   //img2 = loadImage ("TEST2.png");
   //img = loadImage("Mini-bomb.png");
@@ -59,8 +68,8 @@ void setup() {
   // Also pass through the two keys used to control 'up' and 'down' respectively
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
-  leftPaddle = new Paddle(PADDLE_INSET, height/2, '2', 'w');
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, '0', 'p');
+  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'w', 's');
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'i', 'k');
 
   // Create the ball at the centre of the screen
   ball = new Ball(width/2, height/2);
@@ -76,7 +85,7 @@ void draw() {
   // Fill the background each frame so we have animation
   background(img);
   
-   // if(showText ==true)
+
 
   // Update the paddles and ball by calling their update methods
   leftPaddle.update();
@@ -89,7 +98,9 @@ void draw() {
 
   // Check if the ball has collided with either paddle
 
-  ball.collide(leftPaddle);  
+  ball.collide(leftPaddle);
+
+  
   ball.collide(rightPaddle);
 
   // Check if the ball has gone off the screen
@@ -117,11 +128,14 @@ void draw() {
 
 //
 void displayPoints() {
-  fill(255, 255, 255);
+  
+  font = createFont("digital-7.ttf", 25);
+  
+  fill(#ea2525);
   // Horizontal alignment and vertical alignment will be centered
   textAlign(CENTER);
-  
-  textSize(25);
+  textFont(font);
+  textSize(30);
   
   text(trackPointsP1, (width/4), 30);
   
@@ -134,7 +148,7 @@ void displayPoints() {
 void winningPlayer() {
   
   if (trackPointsP1 == winner) {
-    showWinner("Player 2 wins!",color (255,255,255));
+    showWinner("Planet Orange has been saved!",color (255,255,255));
    // ball.SPEED = 5;
    // gameDone = true;
     
@@ -143,11 +157,11 @@ void winningPlayer() {
  }
 
   if (trackPointsP2 == winner) {
-    showWinner("Player 1 wins!",color (255,255,255));
+    showWinner("Planet Blue has been saved!",color (255,255,255));
     
     //gameDone = true;
   //  ball.SPEED = 5;
-   reset(); //<>//
+   reset();
   }
 }
 
@@ -157,10 +171,11 @@ void showWinner ( String winningPlayerText, color winningPlayerColor ) {
   fill(255, 255, 255);
   // Set text and location
   text("YOU WIN!", width/2, height/3);
+  
   // Set text of player who wins and location
   fill(winningPlayerColor);
   text(winningPlayerText, width/2, (height/2 + 80));
-  textSize(20); //<>//
+  textSize(20);
   text ("R Key to restart", width/2, (height/2 + 140));
 
   
@@ -191,14 +206,17 @@ void reset () {
 
 
 
+
+
 void keyPressed() {
-  
+
+
   
   // Just call both paddles' own keyPressed methods
   leftPaddle.keyPressed();
   rightPaddle.keyPressed();
-  
-}
+   }
+
 
 // keyReleased()
 //

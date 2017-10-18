@@ -8,11 +8,13 @@ class Ball {
   /////////////// Properties ///////////////
 
   // Default values for speed and size
-  int SPEED = 5;
-  int resetSPEED = 5;
+  int SPEED = 8;
+  int resetSPEED = 8;
   int SIZE = 80;
+  
+  int resetSize = 80;
   //int default 
-  int HEIGHT = 70;
+  int HEIGHT = 80;
   // Thean of the ball
   int x;
   int y;
@@ -93,11 +95,12 @@ class Ball {
     // Check if the ball is off the left side of the window by checking if it's location is less than 0.
     if (x + SIZE < 0) {
       // If it is, make the right player's score increase by 1
-      trackPointsP1++;
+      trackPointsP2++;
       SIZE = 80;
       SPEED = SPEED + 15; 
       vy++;
-      
+      file.play();
+
          
      
 
@@ -105,11 +108,12 @@ class Ball {
     } // Check if the ball is off the right side of the window by checking if it's location is greater than the width of the window.
     else if (x - SIZE > width) {
       // If it is, make the left player's score increase by 1
-      trackPointsP2++;
+
+      trackPointsP1++;
       SIZE = 80;
       SPEED = SPEED + 15;
       vx++ ;
-      
+      file.play();
   
 
 
@@ -147,15 +151,16 @@ class Ball {
       if (vx < 0) {
         // Reset its position to align with the right side of the paddle
         x = paddle.x + paddle.WIDTH/2 + SIZE/2;
-         SIZE -= 10;
+         SIZE -= 5;
          ballColor = ballColorP1;
-         
+           //file.play();
       } else if (vx > 0) {
       
         // Reset its position to align with the left side of the paddle
         x = paddle.x - paddle.WIDTH/2 - SIZE/2;
-        SIZE -= 10;
+        SIZE -= 5;
        ballColor =  ballColorP2;
+        // file.play();
       //   if (SIZE <= 0) {
        //    SIZE = 80;
         
