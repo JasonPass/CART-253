@@ -20,10 +20,11 @@ class Ball {
   // The velocity of the ball
   int vx;
   int vy;
-
+  
+  color ballColor =  color(255, 255, 255); 
   // The colour of the ball
-  color ballColorP1 = color(200,100,40);
-  color ballColorP2 = color(0,0,255);
+  color ballColorP1 = color(#e15601);
+  color ballColorP2 = color(#2090d8);
 
 
   /////////////// Constructor ///////////////
@@ -94,9 +95,10 @@ class Ball {
       // If it is, make the right player's score increase by 1
       trackPointsP1++;
       SIZE = 80;
-     SPEED = SPEED + 15;
-   //  vx += 5;
-     vy++ ;
+      SPEED = SPEED + 15; 
+      vy++;
+      
+         
      
 
       return true;
@@ -105,10 +107,10 @@ class Ball {
       // If it is, make the left player's score increase by 1
       trackPointsP2++;
       SIZE = 80;
-     SPEED = SPEED + 15;
+      SPEED = SPEED + 15;
       vx++ ;
       
-     // vy += 5;
+  
 
 
       return true;
@@ -127,8 +129,9 @@ class Ball {
   // Checks whether this ball is colliding with the paddle passed as an argument
   // If it is, it makes the ball bounce away from the paddle by reversing its
   // x velocity
-
   
+ 
+      
 
   void collide(Paddle paddle) {
     // Calculate possible overlaps with the paddle side by side
@@ -145,13 +148,14 @@ class Ball {
         // Reset its position to align with the right side of the paddle
         x = paddle.x + paddle.WIDTH/2 + SIZE/2;
          SIZE -= 10;
-       
+         ballColor = ballColorP1;
          
       } else if (vx > 0) {
       
         // Reset its position to align with the left side of the paddle
         x = paddle.x - paddle.WIDTH/2 - SIZE/2;
         SIZE -= 10;
+       ballColor =  ballColorP2;
       //   if (SIZE <= 0) {
        //    SIZE = 80;
         
@@ -160,7 +164,9 @@ class Ball {
       // And make it bounce
       vx = -vx;
      SPEED += 50;
-
+     
+     
+    
     }
   }
   
@@ -175,9 +181,9 @@ class Ball {
     // Set up the appearance of the ball (no stroke, a fill, and rectMode as CENTER)
     
     noStroke();
-fill (255,255,255);
-fill (ballColorP1);
-fill (ballColorP2);
+  fill (ballColor);
+  //fill (ballColorP1);
+  //fill (ballColorP2);
 
  rectMode(CENTER);
     // Draw the ball

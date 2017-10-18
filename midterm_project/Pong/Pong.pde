@@ -85,20 +85,16 @@ void draw() {
   //Shows the points
   displayPoints();
   
-  
-  //Who wins
   winningPlayer();
 
   // Check if the ball has collided with either paddle
 
-  ball.collide(leftPaddle);
-  
+  ball.collide(leftPaddle);  
   ball.collide(rightPaddle);
 
   // Check if the ball has gone off the screen
   if (ball.isOffScreen()) {
     // If it has, reset the ball
-    
     ball.reset();
     //ball.SPEED ++;
   }
@@ -131,6 +127,8 @@ void displayPoints() {
   
   text(trackPointsP2, width - (width/4), 30);
 }
+
+
 
 
 void winningPlayer() {
