@@ -116,8 +116,6 @@ void draw() {
   rightPaddle.display();
   ball.display();
   
- // if (gameDone) {
-   // ball.SPEED = 0;
   }
   
 //}
@@ -127,57 +125,74 @@ void draw() {
 // so when the keypress is detected in the main program we need to
 // tell the paddles
 
+//CHANGED
+// displayPoints ()
 //
+// shows the score left for P1, right for P2
+
 void displayPoints() {
   
+  //CHANGED - added digital font .ttf file to go with theme of sound 
   font = createFont("digital-7.ttf", 25);
   
+  //CHANGED - color of score is red - mimicks digital clocks fouind on bombs / goes with beep
   fill(#ea2525);
   // Horizontal alignment and vertical alignment will be centered
   textAlign(CENTER);
+  
+  //CHANGED - uses the digital font 
   textFont(font);
+  //CHANGED - size of the font
   textSize(30);
-  
+  //CHANGED - adds text to track P1 score 
   text(trackPointsP1, (width/4), 30);
-  
+  //CHANGED - adds text to track P1 score
   text(trackPointsP2, width - (width/4), 30);
 }
 
 
-
+// CHANGED
+// winningPlayer()
+//
+// Checks if P1 or P2 points reach limit (winner = 12) 
 
 void winningPlayer() {
-  
+  // CHANGED - if trackPointsP1 = 12, P1 wins & displays text for winner 
   if (trackPointsP1 == winner) {
     showWinner("Planet Orange has been saved!",color (255,255,255));
-   // ball.SPEED = 5;
-   // gameDone = true;
-    
+
+   //CHANGED - resets game (ball, ball speed, score) for another round  
    reset();
     
  }
-
+  // CHANGED - if trackPointsP1 = 12, P2 wins & displays text for winner 
   if (trackPointsP2 == winner) {
     showWinner("Planet Blue has been saved!",color (255,255,255));
     
-    //gameDone = true;
-  //  ball.SPEED = 5;
+   //CHANGED - resets game (ball, ball speed, score) for another round 
    reset();
   }
 }
 
+//CHANGED
+//showWinner()
+//
+//Shows text when the match is done and hit "R" to restart 
 
 void showWinner ( String winningPlayerText, color winningPlayerColor ) {
-  
+  // CHANGED - fills text white
   fill(255, 255, 255);
-  // Set text and location
-  text("YOU WIN!", width/2, height/3);
+  // CHANGED - shows text in middle of screen 
+  text("YOU WIN!", width/2, height/3 + 20);
   
-  // Set text of player who wins and location
+  // CHANGED - set text of player who wins and location
   fill(winningPlayerColor);
-  text(winningPlayerText, width/2, (height/2 + 80));
+  // CHANGED -  text for winning player in middle of screen
+  text(winningPlayerText, width/2, (height/2 + 90));
+  // CHANGED - size of font 
   textSize(20);
-  text ("R Key to restart", width/2, (height/2 + 140));
+  // CHANGED - text to restart match at bottom middle of screen
+  text ("R Key to restart", width/2, (height/2 + 160));
 
   
 }
@@ -201,7 +216,6 @@ void reset () {
     trackPointsP1 = 0;
     trackPointsP2 = 0;
 
-   // gameDone = false;
   }
   }  
 
