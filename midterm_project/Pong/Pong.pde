@@ -1,11 +1,4 @@
- //<>//
-//CHANGED - imported a mp3 soundfile
-import processing.sound.*; //<>//
-
-//CHANGED - variable for soundfile
-SoundFile file;
-
-// Pong
+// Pong //<>//
 //
 // A simple version of Pong using object-oriented programming.
 // Allows to people to bounce a ball back and forth between
@@ -21,12 +14,17 @@ Paddle leftPaddle;
 Paddle rightPaddle;
 Ball ball;
 
+//CHANGED - imported a mp3 soundfile
+import processing.sound.*; //<>//
+
+//CHANGED - variable for soundfile
+SoundFile file;
+
 // The distance from the edge of the window a paddle should be
 int PADDLE_INSET = 8;
 
 // CHANGED - varriable for background image
 PImage img;
-
 
 ///////////////////////////////
 // The background colour during play (black)
@@ -55,26 +53,24 @@ PFont font;
 void setup() {
   // Set the size - CHANGED - slightly bigger window
   size(800, 500);
-  
+
   //CHANGED - added beep soundfile each time someone scores
- file = new SoundFile (this, "beep.mp3");
- 
+  file = new SoundFile (this, "beep.mp3");
+
   //CHANGED - added space pixel space background (oranage/fire vs blue/ice theme) 
   img = loadImage("space.background.png");
-  
   // Create the paddles on either side of the screen. 
   // Use PADDLE_INSET to to position them on x, position them both at centre on y
   // Also pass through the two keys used to control 'up' and 'down' respectively
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
-  
+
   //CHANGED - changed controls 
-  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'w', 's');
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'i', 'k');
+  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'w', 'd');
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'o', 'k');
 
   // Create the ball at the centre of the screen
   ball = new Ball(width/2, height/2);
-  
 }
 
 // draw()
@@ -85,8 +81,6 @@ void setup() {
 void draw() {
   // CHANGED - added pixel space image to background - fill the background each frame so we have animation 
   background(img);
-  
-
 
   // Update the paddles and ball by calling their update methods
   leftPaddle.update();
@@ -98,32 +92,20 @@ void draw() {
   winningPlayer();
 
   // Check if the ball has collided with either paddle
-
   ball.collide(leftPaddle);
-
-  
   ball.collide(rightPaddle);
 
   // Check if the ball has gone off the screen
   if (ball.isOffScreen()) {
     // If it has, reset the ball
     ball.reset();
-    //ball.SPEED ++;
   }
 
   // Display the paddles and the ball
   leftPaddle.display();
   rightPaddle.display();
   ball.display();
-  
-  }
-  
-//}
-// keyPressed()
-//
-// The paddles need to know if they should move based on a keypress
-// so when the keypress is detected in the main program we need to
-// tell the paddles
+}
 
 //CHANGED
 // displayPoints ()
@@ -131,15 +113,14 @@ void draw() {
 // shows the score left for P1, right for P2
 
 void displayPoints() {
-  
-  //CHANGED - added digital font .ttf file to go with theme of sound 
+  // CHANGED - added digital font .ttf file to go with theme of sound 
   font = createFont("digital-7.ttf", 25);
-  
+
   //CHANGED - color of score is red - mimicks digital clocks fouind on bombs / goes with beep
   fill(#ea2525);
   // Horizontal alignment and vertical alignment will be centered
   textAlign(CENTER);
-  
+
   //CHANGED - uses the digital font 
   textFont(font);
   //CHANGED - size of the font
@@ -159,18 +140,17 @@ void displayPoints() {
 void winningPlayer() {
   // CHANGED - if trackPointsP1 = 12, P1 wins & displays text for winner 
   if (trackPointsP1 == winner) {
-    showWinner("Planet Orange has been saved!",color (255,255,255));
+    showWinner("Planet Orange has been saved!", color (255, 255, 255));
 
-   //CHANGED - resets game (ball, ball speed, score) for another round  
-   reset();
-    
- }
+    //CHANGED - resets game (ball, ball speed, score) for another round  
+    reset();
+  }
   // CHANGED - if trackPointsP1 = 12, P2 wins & displays text for winner 
   if (trackPointsP2 == winner) {
-    showWinner("Planet Blue has been saved!",color (255,255,255));
-    
-   //CHANGED - resets game (ball, ball speed, score) for another round 
-   reset();
+    showWinner("Planet Blue has been saved!", color (255, 255, 255));
+
+    //CHANGED - resets game (ball, ball speed, score) for another round 
+    reset();
   }
 }
 
@@ -184,7 +164,6 @@ void showWinner ( String winningPlayerText, color winningPlayerColor ) {
   fill(255, 255, 255);
   // CHANGED - shows text in middle of screen 
   text("YOU WIN!", width/2, height/3 + 20);
-  
   // CHANGED - set text of player who wins and location
   fill(winningPlayerColor);
   // CHANGED -  text for winning player in middle of screen
@@ -193,44 +172,39 @@ void showWinner ( String winningPlayerText, color winningPlayerColor ) {
   textSize(20);
   // CHANGED - text to restart match at bottom middle of screen
   text ("R Key to restart", width/2, (height/2 + 160));
-
-  
 }
 
-//void colorChange () {
-// if collide(Paddle paddle) == true 
- 
-  
-//}
+// CHANGED
+// reset ()
+//
+// restarts the following when someone wins 
 
 void reset () {
-     
-   ball.reset();
-   
+  // CHANGED - calls ball to reset in middle of screen
+  ball.reset();
 
-  if (keyPressed && key == 'r'){
-    
-   ball.vx = ball.resetSPEED;
-   ball.vy = ball.resetSPEED;
-
+  // CHANGED - restarts game when r is pressed 
+  if (keyPressed && key == 'r') {
+    // CHANGED - resets speed back to 8
+    ball.vx = ball.resetSPEED;
+    ball.vy = ball.resetSPEED;
+    // CHANGED - clears scoreboard
     trackPointsP1 = 0;
     trackPointsP2 = 0;
-
   }
-  }  
+}  
 
-
-
-
+// keyPressed()
+//
+// The paddles need to know if they should move based on a keypress
+// so when the keypress is detected in the main program we need to
+// tell the paddles
 
 void keyPressed() {
-
-
-  
   // Just call both paddles' own keyPressed methods
   leftPaddle.keyPressed();
   rightPaddle.keyPressed();
-   }
+}
 
 
 // keyReleased()

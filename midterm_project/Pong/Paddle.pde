@@ -7,7 +7,7 @@ class Paddle {
 
   /////////////// Properties ///////////////
 
-  // Default values for speed and size
+  // CHANGED - changed values for speed and size
   int SPEED = 8;
   int HEIGHT = 20;
   int WIDTH = 20;
@@ -19,10 +19,7 @@ class Paddle {
   int vy;
   
   // The fill color of the paddle
-  color paddleColorLeft = color(0,255,0, 120);
-  color paddleColorRight = color(255,0,0, 120);
-  
-
+  color paddleColor = color(0,0,0, 120);
 
   // The characters used to make the paddle move up and down, defined in constructor
   char upKey;
@@ -30,7 +27,6 @@ class Paddle {
   
   char downKey2;
   char upKey2;
-
 
   /////////////// Constructor ///////////////
 
@@ -44,13 +40,9 @@ class Paddle {
     y = _y;
     vx = 0;
     vy = 0;
-
-
+    
     upKey = _upKey;
-    downKey = _downKey;
-    
-   
-    
+    downKey = _downKey;    
 }
 
 
@@ -75,8 +67,10 @@ class Paddle {
   
   void display() {
     // Set display properties
-    stroke(255,150);
-    fill(paddleColorRight);
+    // CHANGED stroke to red
+    stroke(#ea2525);
+    // CHANGED color to black with opacity 
+    fill(paddleColor);
     rectMode(CENTER);
     // Draw the paddle as a rectangle
     rect(x, y, WIDTH, HEIGHT);
@@ -95,11 +89,9 @@ class Paddle {
     else if (key == downKey) {
       // If so we want a positive y velocity
       vy = SPEED;
-    }
- 
-  
-    
+    }    
   }
+  
   // keyReleased()
   //
   // Called when keyReleased is called in the main program

@@ -8,23 +8,28 @@ class Ball {
   /////////////// Properties ///////////////
 
   // Default values for speed and size
+  // CHANGED - speed to 8
   int SPEED = 8;
+  // CHANGED - when game is done resets speed to 8
   int resetSPEED = 8;
-  int SIZE = 80;
   
+  // CHANGED - size to 80 
+  int SIZE = 80;
+  // CHANGED - resets ball size when it goes off screen
   int resetSize = 80;
-  //int default 
-  int HEIGHT = 80;
-  // Thean of the ball
+  
+  // The location of the ball
   int x;
   int y;
 
   // The velocity of the ball
   int vx;
   int vy;
-  
-  color ballColor =  color(255, 255, 255); 
+    
   // The colour of the ball
+  color ballColor =  color(255, 255, 255); 
+  
+  // CHANGED - color of the ball changes depending on who hit it 
   color ballColorP1 = color(#e15601);
   color ballColorP2 = color(#2090d8);
 
@@ -78,9 +83,7 @@ class Ball {
   void reset() {
     x = width/2;
     y = height/2;
-   
   }
-
 
   // isOffScreen()
   //
@@ -91,51 +94,45 @@ class Ball {
   // or a String (e.g. "ON SCREEN", "OFF LEFT", "OFF RIGHT")
   
   boolean isOffScreen() {
-   //return (x + SIZE/2 < 0 || x - SIZE/2 > width); 
-    // Check if the ball is off the left side of the window by checking if it's location is less than 0.
-    if (x + SIZE < 0) {
-      // If it is, make the right player's score increase by 1
+    // CAHNGED - check if the ball is off the left side of the window by checking if it's location is less than 0.
+    if (x + SIZE/2 < 0) {
+      // CHANGED - add point to P2 each time ball goes off left screen
       trackPointsP2++;
+      // CHANGED - size resets to 80 when ball goes off screen
       SIZE = 80;
-      SPEED = SPEED + 15; 
+      // CHANGED - everytime someone scores, speed increases
+      SPEED += 15; 
+      // CHANGED - direction changes up or down
       vy++;
+      // CHANGED - plays beep sound when ball goes off screen
       file.play();
-
-         
-     
 
       return true;
-    } // Check if the ball is off the right side of the window by checking if it's location is greater than the width of the window.
-    else if (x - SIZE > width) {
-      // If it is, make the left player's score increase by 1
-
+    } // CHANGED - check if the ball is off the right side of the window by checking if it's location is greater than the width of the window.
+    else if (x - SIZE/2 > width) {
+      // CHANGED - add point to P1 each time ball goes off right screen
       trackPointsP1++;
+      // CHANGED - size resets to 80 when ball goes off screen
       SIZE = 80;
-      SPEED = SPEED + 15;
+      // CHANGED - everytime someone scores, speed increases 
+      SPEED += 15; 
+      // CHANGED - direction changes up or down
       vx++ ;
+      // CHANGED - plays beep sound when ball goes off screen
       file.play();
   
-
-
       return true;
     } else {
       
-      // If all is not true, return false.
-      return false;
-      
+      return false;    
     }
   }
-
-
   
   // collide(Paddle paddle)
   //
   // Checks whether this ball is colliding with the paddle passed as an argument
   // If it is, it makes the ball bounce away from the paddle by reversing its
-  // x velocity
-  
- 
-      
+  // x velocity     
 
   void collide(Paddle paddle) {
     // Calculate possible overlaps with the paddle side by side
@@ -151,48 +148,37 @@ class Ball {
       if (vx < 0) {
         // Reset its position to align with the right side of the paddle
         x = paddle.x + paddle.WIDTH/2 + SIZE/2;
+        // CHANGED - size goes down by 5 when hit by paddle and color changes to orange
          SIZE -= 5;
          ballColor = ballColorP1;
-           //file.play();
       } else if (vx > 0) {
       
         // Reset its position to align with the left side of the paddle
         x = paddle.x - paddle.WIDTH/2 - SIZE/2;
+        // CHANGED - size goes down by 5 when hit by paddle and color changes to blue
         SIZE -= 5;
-       ballColor =  ballColorP2;
-        // file.play();
-      //   if (SIZE <= 0) {
-       //    SIZE = 80;
-        
+        ballColor =  ballColorP2;
         
       }
       // And make it bounce
       vx = -vx;
-     SPEED += 50;
-     
-     
-    
+      SPEED += 50;    
     }
   }
-  
-  
- // }
-
+   
   // display()
   //
   // Draw the ball at its position
 
   void display() {
-    // Set up the appearance of the ball (no stroke, a fill, and rectMode as CENTER)
-    
-    noStroke();
+  
+  // Set up the appearance of the ball (no stroke, a fill, and rectMode as CENTER)
+  noStroke();
+  // CHANGED - fills ball white 
   fill (ballColor);
-  //fill (ballColorP1);
-  //fill (ballColorP2);
-
- rectMode(CENTER);
-    // Draw the ball
- ellipse(x, y, SIZE, SIZE);
-  // image(img2, x, y, 10, 10);
+  rectMode(CENTER);
+  // CHANGED - to ball 
+  ellipse(x, y, SIZE, SIZE);
+  
   }
 }
