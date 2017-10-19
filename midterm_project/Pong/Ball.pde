@@ -141,7 +141,6 @@ class Ball {
     boolean insideTop = (y + SIZE/2 > paddle.y - paddle.HEIGHT/2);
     boolean insideBottom = (y - SIZE/2 < paddle.y + paddle.HEIGHT/2);
        
-    
     // Check if the ball overlaps with the paddle
     if (insideLeft && insideRight && insideTop && insideBottom) {
       // If it was moving to the left
@@ -179,6 +178,5 @@ class Ball {
   rectMode(CENTER);
   // CHANGED - to ball 
   ellipse(x, y, SIZE, SIZE);
-  
   }
 }

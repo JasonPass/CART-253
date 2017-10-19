@@ -44,8 +44,6 @@ int winner = 12;
 //CHANGED - font variable
 PFont font;
 
-
-
 // setup()
 //
 // Sets the size and creates the paddles and ball
@@ -131,7 +129,6 @@ void displayPoints() {
   text(trackPointsP2, width - (width/4), 30);
 }
 
-
 // CHANGED
 // winningPlayer()
 //
@@ -205,7 +202,6 @@ void keyPressed() {
   leftPaddle.keyPressed();
   rightPaddle.keyPressed();
 }
-
 
 // keyReleased()
 //
