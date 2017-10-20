@@ -41,7 +41,7 @@ class Griddie {
     }
     
     // QUESTION: How does the Griddie movement updating work?
-    //A : Griddies move in random X or Y directions on the grid 
+    //A: Griddies move in random X or Y directions on the grid 
     int xMoveType = floor(random(-1,2));
     int yMoveType = floor(random(-1,2));
     x += size * xMoveType;

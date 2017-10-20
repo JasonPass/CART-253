@@ -11,6 +11,12 @@ int gridSize = 20;
 // An array storing all the griddies
 Griddie[] griddies = new Griddie[100];
 
+////////
+
+int eiddirgSize = 50;
+
+Eiddirg[] eiddirgs = new Eiddirg[50];
+
 // setup()
 //
 // Set up the window and the griddies
@@ -27,6 +33,14 @@ void setup() {
     int x = floor(random(0, width/gridSize));
     int y = floor(random(0, height/gridSize));
     griddies[i] = new Griddie(x * gridSize, y * gridSize, gridSize);
+  }
+
+//////////////////////////////
+
+for (int i = 0; i < eiddirgs.length; i++) {
+    int x = floor(random(0, width/eiddirgSize));
+    int y = floor(random(0, height/eiddirgSize));
+    eiddirgs[i] = new Eiddirg(x * eiddirgSize, y * eiddirgSize, eiddirgSize);
   }
 }
 
@@ -54,5 +68,19 @@ void draw() {
     
     // Display the griddies
     griddies[i].display();
+  }
+
+for (int i = 0; i < eiddirgs.length; i++) {
+    eiddirgs[i].update();
+
+    for (int j = 0; j < eiddirgs.length; j++) {
+
+      if (j != i) {
+        eiddirgs[i].collide(eiddirgs[j]);
+      }
+    }
+
+    // Display the eiddirgs
+    eiddirgs[i].display();
   }
 }
