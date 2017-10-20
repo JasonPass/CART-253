@@ -17,10 +17,12 @@ Griddie[] griddies = new Griddie[100];
 
 void setup() {
   // Set up the window size and framerate (lower so we can watch easier)
+  //
   size(640, 480);
   frameRate(10);
 
   // QUESTION: What does this for loop do?
+  //A: This is an array for creating the random griddies in random areas of the screen
   for (int i = 0; i < griddies.length; i++) {
     int x = floor(random(0, width/gridSize));
     int y = floor(random(0, height/gridSize));
