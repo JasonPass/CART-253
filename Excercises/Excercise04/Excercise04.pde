@@ -26,7 +26,7 @@ void setup() {
   frameRate(10);
 
   // QUESTION: What does this for loop do?
-  //A: This is an array for creating the random griddies in random areas of the screen
+  //A: Sets up the griddies from the array for creating the random griddies in random areas of the screen
   for (int i = 0; i < griddies.length; i++) {
     int x = floor(random(0, width/gridSize));
     int y = floor(random(0, height/gridSize));
@@ -56,8 +56,10 @@ void draw() {
     // Now go through all the griddies a second time...
     for (int j = 0; j < griddies.length; j++) {
       // QUESTION: What is this if-statement for?
+      // A: Checks if griddies j and i are not the same 
       if (j != i) {
         // QUESTION: What does this line check?
+        // A: Checks if griddies i and j collide
         griddies[i].collide(griddies[j]);
       }
     }
