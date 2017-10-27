@@ -99,14 +99,11 @@ class Griddie {
       energy = constrain(energy,0,maxEnergy);
     }
   }
-
-  
-  
+ 
   //CHANGED
   // colorShift()
   //
   // Changes the griddies color based on a 2 second interval timer
-  
   
   void colorShift()
   {

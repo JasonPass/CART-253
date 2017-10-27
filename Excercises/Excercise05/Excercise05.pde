@@ -15,9 +15,6 @@ int eiddirgSize = 50;
 
 Eiddirg[] eiddirgs = new Eiddirg[50];
 
- float lastTime;
- float timeInterval;
-
 // setup()
 //
 // Set up the window and the griddies
@@ -27,9 +24,6 @@ void setup() {
   //
   size(640, 480);
   frameRate(10);
-  
- lastTime = millis();
-timeInterval = 2000;
 
   // QUESTION: What does this for loop do?
   //A: Sets up the griddies from the array for creating the random griddies in random areas of the screen
