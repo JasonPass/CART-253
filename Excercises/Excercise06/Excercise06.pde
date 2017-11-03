@@ -12,6 +12,8 @@ Capture video;
 // When we create it we give it the starting x and y (which I'm setting to -1, -1
 // as a default value)
 PVector brightestPixel = new PVector(-1,-1);
+// CHANGED - variable PImage
+PImage img;
 
 // An array of bouncers to play with
 Bouncer[] bouncers = new Bouncer[10];
@@ -22,7 +24,8 @@ Bouncer[] bouncers = new Bouncer[10];
 
 void setup() {
   size(640, 480);
-
+  // CHANGED - load sniper png
+  img = loadImage ("sniper.png");
   // Our old friend the for-loop used to go through the length of an
   // array adding new objects to it (Bouncers in this case)
   for (int i = 0; i < bouncers.length; i++) {
@@ -58,10 +61,11 @@ void draw() {
   }
   
   // For now we just draw a crappy ellipse at the brightest pixel
+  // CHANGED - crosshair in place of ellipse
   fill(#ff0000);
   stroke(#ffff00);
   strokeWeight(10);
-  ellipse(brightestPixel.x,brightestPixel.y,20,20);
+  image(img, brightestPixel.x,brightestPixel.y,20,20);
 }
 
 // handleVideoInput
