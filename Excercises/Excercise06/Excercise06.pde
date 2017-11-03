@@ -11,7 +11,7 @@ Capture video;
 // A PVector allows us to store an x and y location in a single object
 // When we create it we give it the starting x and y (which I'm setting to -1, -1
 // as a default value)
-PVector brightestPixel = new PVector(-1,-1);
+PVector brightestPixel = new PVector(-1, -1);
 // CHANGED - variable PImage
 PImage img;
 
@@ -30,9 +30,9 @@ void setup() {
   // array adding new objects to it (Bouncers in this case)
   for (int i = 0; i < bouncers.length; i++) {
     // Each Bouncer just starts with random values 
-    bouncers[i] = new Bouncer(random(0,width),random(0,height),random(-10,10),random(-10,10),random(20,50),color(random(255)));
+    bouncers[i] = new Bouncer(random(0, width), random(0, height), random(-10, 10), random(-10, 10), random(20, 50), color(random(255)));
   }
-  
+
   // Start up the webcam
   video = new Capture(this, 640, 480, 30);
   video.start();
@@ -50,29 +50,27 @@ void draw() {
 
   // Draw the video frame to the screen
   image(video, 0, 0);
-  
+
   // Our old friend the for-loop running through the length of an array to
   // update and display objects, in this case Bouncers.
   // If the brightness (or other video property) is going to interact with all the
   // Bouncers, it will need to happen in here.
   for (int j = 0; j < bouncers.length; j++) {
-   bouncers[j].update();
-   bouncers[j].display();
-   
-   
-   // CHANGED - coliding corosshairs with ellipse turns them red
-   if ((dist(bouncers[j].x, bouncers[j].y, brightestPixel.x, brightestPixel.y) < bouncers[j].size/2)) {
-  bouncers[j] = new Bouncer(random(0,width),random(0,height),random(-10,10),random(-10,10),random(20,50),color(255,0,0));
+    bouncers[j].update();
+    bouncers[j].display();
 
-    }  
+
+    // CHANGED - coliding corosshairs with ellipse turns them red & relocates them
+    if ((dist(bouncers[j].x, bouncers[j].y, brightestPixel.x, brightestPixel.y) < bouncers[j].size/2)) {
+      bouncers[j] = new Bouncer(random(0, width), random(0, height), random(-10, 10), random(-10, 10), random(20, 50), color(255, 0, 0));
+    }
   }
-  
-  
+
   // For now we just draw a crappy ellipse at the brightest pixel
   // CHANGED - crosshair in place of ellipse
   noFill();
   noStroke();
-  image(img, brightestPixel.x,brightestPixel.y,20,20);
+  image(img, brightestPixel.x, brightestPixel.y, 20, 20);
 }
 
 // handleVideoInput
@@ -86,7 +84,7 @@ void handleVideoInput() {
     // If not, then just return, nothing to do
     return;
   }
-  
+
   // If we're here, there IS a frame to look at so read it in
   video.read();
 
@@ -113,8 +111,14 @@ void handleVideoInput() {
         // brightestPixel's x and y properties.
         brightestPixel.x = x;
         brightestPixel.y = y;
-  }
 
+        //CHANGED - added function where is the mouse is clicked it resets the bouncers
+        for (int i = 0; i < bouncers.length; i++) {
+          if (mousePressed) {
+            bouncers[i] = new Bouncer(random(0, width), random(0, height), random(-10, 10), random(-10, 10), random(20, 50), color(random((255))));
+          }
+        }
       }
     }
   }
+}

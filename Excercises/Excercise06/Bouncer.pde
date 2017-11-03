@@ -22,7 +22,6 @@ class Bouncer {
   // The default fill colour of the Bouncer
   color defaultColor;
   
-  color newColor;
 
   // Bouncer(tempX,tempY,tempVX,tempVY,tempSize,tempDefaultColor)
   //
