@@ -55,16 +55,23 @@ void draw() {
   // update and display objects, in this case Bouncers.
   // If the brightness (or other video property) is going to interact with all the
   // Bouncers, it will need to happen in here.
-  for (int i = 0; i < bouncers.length; i++) {
-   bouncers[i].update();
-   bouncers[i].display();
+  for (int j = 0; j < bouncers.length; j++) {
+   bouncers[j].update();
+   bouncers[j].display();
+   
+   
+   // CHANGED - coliding corosshairs with ellipse turns them red
+   if ((dist(bouncers[j].x, bouncers[j].y, brightestPixel.x, brightestPixel.y) < bouncers[j].size/2)) {
+  bouncers[j] = new Bouncer(random(0,width),random(0,height),random(-10,10),random(-10,10),random(20,50),color(255,0,0));
+
+    }  
   }
+  
   
   // For now we just draw a crappy ellipse at the brightest pixel
   // CHANGED - crosshair in place of ellipse
-  fill(#ff0000);
-  stroke(#ffff00);
-  strokeWeight(10);
+  noFill();
+  noStroke();
   image(img, brightestPixel.x,brightestPixel.y,20,20);
 }
 
@@ -106,7 +113,8 @@ void handleVideoInput() {
         // brightestPixel's x and y properties.
         brightestPixel.x = x;
         brightestPixel.y = y;
+  }
+
       }
     }
   }
-}

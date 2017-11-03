@@ -21,6 +21,8 @@ class Bouncer {
 
   // The default fill colour of the Bouncer
   color defaultColor;
+  
+  color newColor;
 
   // Bouncer(tempX,tempY,tempVX,tempVY,tempSize,tempDefaultColor)
   //
@@ -34,6 +36,7 @@ class Bouncer {
     size = tempSize;
     defaultColor = tempDefaultColor;
     fillColor = defaultColor;
+
   }
 
   // update()
@@ -69,7 +72,8 @@ class Bouncer {
     x = constrain(x, size/2, width-size/2);
     y = constrain(y, size/2, height-size/2);
   }
-
+   
+  
   // display()
   //
   // Draw an ellipse in the Bouncer's location, with its size
