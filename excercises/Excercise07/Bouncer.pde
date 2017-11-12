@@ -34,12 +34,14 @@ class Bouncer {
   //What dterminds the parameters of the bounce
   void handleBounce() {
     if (x - size/2 < 0 || x + size/2 > width) {
-      fileClickSound.play();
+      // CHANGED - added sound to when bounces on width
+      fileClickSound.play(); 
       vx = -vx; 
       size = size - 25;
     }
 
     if (y - size/2 < 0 || y + size/2 > height) {
+      // CHANGED - added sound to when bounces on height
       fileClickSound.play();
       vy = -vy;
       size = size - 5;// CNAHGED - size goes down by 5 when bounccers hit walls(eventually go inverse and get big)
