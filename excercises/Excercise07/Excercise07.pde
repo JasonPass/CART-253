@@ -3,10 +3,6 @@ import processing.sound.*;
 //CHANGED - variable for mp3 soundfile 
 SoundFile fileClickSound;
 
-
-
-
-
 //Color of background
 int size;
 color backgroundColor = color(255,255,255);
