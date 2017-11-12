@@ -1,6 +1,10 @@
 //import mp3 soundfile
 import processing.sound.*;
-SoundFile file;
+SoundFile fileClickSound;
+SoundFile fileBounceSound;
+
+//import mp3 soundfile
+
 
 //Color of background
 int size;
@@ -12,7 +16,8 @@ Bouncer bouncer2;
 //Setting up the size, bg color, and specifications for the 2 bouncing objects 
 void setup() {
   size(640,480);
-  file = new SoundFile (this, "beep.mp3"); // CHANGED - added a sound when bouncers hit wall
+  fileClickSound = new SoundFile (this, "soundStrange.mp3"); // CHANGED - added a sound when bouncers hit wall
+  fileBounceSound = new SoundFile (this, "soundStrange.mp3");
   background(backgroundColor);
   bouncer = new Bouncer(width/2,height/2,2,2,50,color(150,0,0,50),color(255,0,0,50));
   bouncer2 = new Bouncer(width/2,height/2,-2,2,50,color(0,0,150,50),color(0,0,255,50));
