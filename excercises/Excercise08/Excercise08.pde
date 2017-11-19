@@ -4,7 +4,7 @@ Shooter shooter;
 // variable for ship image
 PImage  img;
 
-// varisbles for checking time of when the game started until your time is up
+// variables for checking time of when the game started until your time is up
 float lasttimecheck;
 float timeinterval;
 
@@ -32,46 +32,80 @@ int getRandomX()
   
    void setup()
   {
-    //Size 
+    // Size 
     size (1280, 1000);
     smooth ();
+    // Time in milliseconds, time interval of 
     lasttimecheck = millis();
     timeinterval = 40000; 
     
     shooter = new Shooter(SHOOTER_INSET, width/2, 'a', 'd');
-    //shooter = new Shooter(SHOOTER_INSET, width/2, 'w', 's');
-
   }
     
   void draw() {
 
    //Game Style
    background (0);
-   fill(0,2);
-   //rect(0, 0, 1280, 720);
-   fill(255);
-   noStroke();
-   ellipse(random(width), random(height), 2, 2);
   
    
    shooter.update();
-    //fill(0);
-    //stroke (255);
-   // triangle(mouseX-15, 600, mouseX+15, 600, mouseX, 565);
-    // display score
-    
-    fill(255);
-    text(score, 20,20);
-    //if(fire)
-   // {
-     // shooter(mouseX);
-     // fire = false;
-   // }
+
+   fill(255);
+   text(score, 20,20);
   
-     ballFalling();
-     gameOver();  
+   ballFalling();
+   gameOver();  
     
-     shooter.display();
+   shooter.display();
 
     
   }
+  
+  void mousePressed()
+  {
+    fire = true;
+  }
+  
+  void ballFalling()
+  {  
+    stroke(255, 255, 255); 
+    noFill(); 
+    
+    for (int i=0; i<7; i++)
+    {
+     rect(ballx[i], bally[i]++, random(10,20), random(10,40));
+    }
+  }
+  
+
+  
+  
+  // GameOver
+  // When time limit is reached the game is done and shows you your total points 
+  void gameOver()
+  {
+    
+      if(millis() > lasttimecheck + timeinterval)
+      {
+        lasttimecheck = millis();
+        fill(255, 255, 255);
+        text("TIME LIMIT REACHED", width/2.2, height/2);
+        text("Your total points is: "+ score, width/2.2, height/2 + 25);
+        fill(color(0));
+        fill(255, 0, 0);
+        textAlign(CENTER);
+        noLoop();
+
+  
+       }
+      }
+      
+      void keyPressed() {
+       shooter.keyPressed();
+        
+      }
+      
+      void keyReleased(){
+       shooter.keyReleased();
+        
+      }
