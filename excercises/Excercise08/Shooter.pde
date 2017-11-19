@@ -41,10 +41,10 @@ Shooter(int _x, int _y, char _upKey, char _downKey) {
   fill(255);
   stroke (255,50,50);
   image(img, x, y );
-  imageMode(CORNER);
+  imageMode(CENTER);
    if(fire)
     {
-      shooter(mouseX);
+      shooter(x);
       fire = false;
     }
 
@@ -59,7 +59,7 @@ Shooter(int _x, int _y, char _upKey, char _downKey) {
     {
       if((shotX >= (ballx[i]-ballSize/2)) && (shotX <= (ballx[i]+ballSize/2))) {
         strike = true;
-        line(mouseX, 565, mouseX, bally[i]);
+        line(shooter.x, shooter.y, shooter.x, bally[i]);
         fill(color(255,255,255,180));
         noStroke();
         rect(ballx[i], bally[i], ballSize+50, ballSize+50);
@@ -75,7 +75,7 @@ Shooter(int _x, int _y, char _upKey, char _downKey) {
   
     if(strike == false)
     {
-      line(mouseX, 565, mouseX, 0);
+      line(shooter.x, shooter.y, shooter.x, 0);
     }  
   
   }
