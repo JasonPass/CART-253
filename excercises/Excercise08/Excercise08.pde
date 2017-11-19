@@ -84,7 +84,9 @@ int getRandomX()
   // When time limit is reached the game is done and shows you your total points 
   void gameOver()
   {
-    
+    textSize(25);
+    fill(255);
+    text(second(),20,70);
       if(millis() > lasttimecheck + timeinterval)
       {
         lasttimecheck = millis();
@@ -95,8 +97,6 @@ int getRandomX()
         fill(255, 0, 0);
         textAlign(CENTER);
         noLoop();
-
-  
        }
       }
       
@@ -109,3 +109,4 @@ int getRandomX()
        shooter.keyReleased();
         
       }
+      

@@ -51,7 +51,9 @@ Shooter(int _x, int _y, char _upKey, char _downKey) {
    }
    
       void shooter(int shotX)
-  {
+  { 
+    
+    // boolean for laser gun 
     boolean strike = false;
     for (int i = 0; i < 7; i++)  // 7 total missiles 
     {
@@ -80,45 +82,47 @@ Shooter(int _x, int _y, char _upKey, char _downKey) {
   
   
      void keyPressed() {
-    // Check if the key is our up key
+     
+    // Keys to control the ship are WASD 
+    
     if (key == upKey) {
-      // If so we want a negative x velocity
       vx = -SPEED;
-    } // Otherwise check if the key is our down key 
+    } 
     else if (key == downKey) {
-      // If so we want a positive x velocity
       vx = SPEED;   
     }
         if (key == 'w') {
-      // If so we want a negative y velocity
       vy = -SPEED;
-    } // Otherwise check if the key is our down key 
+    } 
     else if (key == 's') {
-      // If so we want a positive y velocity
       vy = SPEED;   
     }
-   }
+     }
    
     
      void keyReleased() {
-    // Check if the key is our up key and the paddle is moving up
+       
+    // key released for moving the ship,
+    // letting go of the WASD keys should stop moving the ship
+    
     if (key == upKey && vx < 0) {
       // If so it should stop
       vx = 0;
-    } // Otherwise check if the key is our down key and paddle is moving down 
+    } 
     else if (key == downKey && vx > 0) {
-      // If so it should stop
+      
       vx = 0;
      }
      
          if (key == 'w' && vy < 0) {
-      // If so it should stop
+      
       vy = 0;
-    } // Otherwise check if the key is our down key and paddle is moving down 
+    } 
     else if (key == 's' && vy > 0) {
       // If so it should stop
       vy = 0;
      }
      
     }    
-   }
+}
+   
