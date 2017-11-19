@@ -98,3 +98,27 @@ Shooter(int _x, int _y, char _upKey, char _downKey) {
       vy = SPEED;   
     }
    }
+   
+    
+     void keyReleased() {
+    // Check if the key is our up key and the paddle is moving up
+    if (key == upKey && vx < 0) {
+      // If so it should stop
+      vx = 0;
+    } // Otherwise check if the key is our down key and paddle is moving down 
+    else if (key == downKey && vx > 0) {
+      // If so it should stop
+      vx = 0;
+     }
+     
+         if (key == 'w' && vy < 0) {
+      // If so it should stop
+      vy = 0;
+    } // Otherwise check if the key is our down key and paddle is moving down 
+    else if (key == 's' && vy > 0) {
+      // If so it should stop
+      vy = 0;
+     }
+     
+    }    
+   }

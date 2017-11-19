@@ -42,6 +42,36 @@ int getRandomX()
     //shooter = new Shooter(SHOOTER_INSET, width/2, 'w', 's');
 
   }
+    
+  void draw() {
+
+   //Game Style
+   background (0);
+   fill(0,2);
+   //rect(0, 0, 1280, 720);
+   fill(255);
+   noStroke();
+   ellipse(random(width), random(height), 2, 2);
   
+   
+   shooter.update();
+    //fill(0);
+    //stroke (255);
+   // triangle(mouseX-15, 600, mouseX+15, 600, mouseX, 565);
+    // display score
+    
+    fill(255);
+    text(score, 20,20);
+    //if(fire)
+   // {
+     // shooter(mouseX);
+     // fire = false;
+   // }
   
-  
+     ballFalling();
+     gameOver();  
+    
+     shooter.display();
+
+    
+  }
