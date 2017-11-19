@@ -35,7 +35,6 @@ Shooter(int _x, int _y, char _upKey, char _downKey) {
   // y = constrain(y,0 + HEIGHT/2,height - HEIGHT/2);
  }
 
-  
   void display () {
   img = loadImage ("Craft.png");
   fill(255);
@@ -67,7 +66,6 @@ Shooter(int _x, int _y, char _upKey, char _downKey) {
         ballx[i] = getRandomX();
         bally[i] = 0;
 
-
 // update score when you deactivate missile
         score++;
       }    
@@ -79,8 +77,7 @@ Shooter(int _x, int _y, char _upKey, char _downKey) {
     }  
   
   }
-  
-  
+    
      void keyPressed() {
      
     // Keys to control the ship are WASD 
@@ -114,7 +111,7 @@ Shooter(int _x, int _y, char _upKey, char _downKey) {
       vx = 0;
      }
      
-         if (key == 'w' && vy < 0) {
+    if (key == 'w' && vy < 0) {
       
       vy = 0;
     } 
@@ -122,7 +119,6 @@ Shooter(int _x, int _y, char _upKey, char _downKey) {
       // If so it should stop
       vy = 0;
      }
-     
     }    
-}
+   }
    
