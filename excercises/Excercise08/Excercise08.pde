@@ -21,3 +21,27 @@ int gameOver = 0;
  
 // startGame;
 int getRandomX()
+
+  {
+    return int(random(1000));
+  }
+  
+  int[] ballx = { getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX() };
+  int[] bally = { 0, 0, 0, 0, 0, 0, 0};
+  
+  
+   void setup()
+  {
+    //Size 
+    size (1280, 1000);
+    smooth ();
+    lasttimecheck = millis();
+    timeinterval = 40000; 
+    
+    shooter = new Shooter(SHOOTER_INSET, width/2, 'a', 'd');
+    //shooter = new Shooter(SHOOTER_INSET, width/2, 'w', 's');
+
+  }
+  
+  
+  
