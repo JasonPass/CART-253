@@ -41,3 +41,25 @@
 // effect sounds. The PNG for the ship was made in Photoshop along with the splash screen and the screen
 // when you let a box through the force field. I tried mimicking the art style of the old arcade games 
 // where the posters would be slightly more exaggerated than the game itself. 
+
+
+// Set of named options for game menu and splashscreen
+enum State {
+  NONE, 
+    SPLASHSCREEN, 
+    MENU, 
+    SHOOTER
+}
+
+// Variable to track the state in the game
+State state;
+
+// Variables that store information for each state
+SplashScreen splashScreen;
+Menu menu;
+Shooter shooter;
+
+// Import sound library 
+import processing.sound.*;
+SoundFile file;
+SoundFile fileW;
