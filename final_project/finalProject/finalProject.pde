@@ -63,3 +63,98 @@ Shooter shooter;
 import processing.sound.*;
 SoundFile file;
 SoundFile fileW;
+
+// Variable for main game background  
+PImage imgBg;
+
+// Variable for backgeound image when box is out of screen
+PImage imgGo;
+
+// Variable for ship png created in Photoshop
+PImage img;
+
+// Variable for Ubuntu Regular font
+PFont font;
+
+// Variable for score
+int score;
+
+// Boolean for shooting laser
+boolean fire = false;
+
+// Variable for game over
+int gameOver = 0;
+
+// Set up the basics, size and the three states
+void setup() {
+
+  // Screen size
+  size (1280, 1000);
+  // Load images for ball over screen and background
+  imgGo = loadImage ("background.for.box.over.jpg");
+  imgBg = loadImage ("background.for.game.jpg");
+  
+  file = new SoundFile(this, "LaserBlasts.mp3");
+  fileW = new SoundFile(this, "warpSpeed.mp3");
+
+  // The three different sates
+  splashScreen = new SplashScreen();
+  menu = new Menu();
+  state = State.SPLASHSCREEN;
+    
+  // Starts your ship in middle of screen
+  int SHOOTER_INSET = width/2;
+  shooter = new Shooter(SHOOTER_INSET, width/2, 'a', 'd');
+  
+  file = new SoundFile(this, "LaserBlasts.mp3");
+}
+
+
+// void draw()
+//
+// Uses a FSM to run certain states. Depending on what state
+// you're in the game will draw the objects within it
+void draw() {
+  
+  // Allows to switch between the three different cases 
+  switch (state) {
+  
+  // Nothing happends
+  // break between all cases
+  case NONE:
+    break;
+  
+  // Opens splashscreen state with game art
+  // Press any key to move onto the next
+  case SPLASHSCREEN:
+    splashScreen.update();
+    if (splashScreen.finished) {
+      state = State.MENU;
+    }
+    break;
+  
+  // It than brings you to the menu where it tells you
+  // the basics of the game 
+  // Press K to start the game
+  case MENU:
+    menu.update();
+    if (menu.selection != State.NONE) {
+      state = menu.selection;
+      menu.selection = State.NONE;
+    }
+    break;
+  
+  // finally the sate for the game 
+  // updates the game
+  // also checks if we want to reset the game
+  // it will bring you back to the menu if you 
+  // press m
+  case SHOOTER:
+    shooter.update();
+    if (shooter.returnToMenu) {
+      state = State.MENU;
+      shooter.reset();
+    }
+    break;
+  }
+}
