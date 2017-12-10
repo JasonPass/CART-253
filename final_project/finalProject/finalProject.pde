@@ -109,7 +109,6 @@ void setup() {
   file = new SoundFile(this, "LaserBlasts.mp3");
 }
 
-
 // void draw()
 //
 // Uses a FSM to run certain states. Depending on what state
@@ -157,4 +156,67 @@ void draw() {
     }
     break;
   }
+}
+
+// void reset()
+//
+// Resets the game when you run out of time or let a box
+// too far into atmosphere 
+void reset() {
+  if (key == 'm' || key == 'M') {
+  shooter.reset();
+  }
+}
+
+// void keyPressed()
+//
+// methods for different sates and for the game 
+void keyPressed() {
+  switch (state) {
+  case NONE:
+    break;
+
+  case SPLASHSCREEN:
+    splashScreen.keyPressed();
+    break;
+
+  case MENU:
+    menu.keyPressed();
+    break;
+
+  case SHOOTER:
+    shooter.keyPressed();
+    break;
+  }
+}
+
+// keyReleased()
+//
+// methods for different sates and for the game
+void keyReleased() {
+  switch (state) {
+  case NONE:
+    break;
+
+  case SPLASHSCREEN:
+    splashScreen.keyReleased();
+    break;
+
+  case MENU:
+    menu.keyReleased();
+    break;
+
+  case SHOOTER:
+    shooter.keyReleased();
+    break;
+  }
+}
+
+// void mousePressed()
+//
+// turns the boolean fire to true when mouse
+// is pressed
+void mousePressed() {  
+  fire = true;
+  file.play();
 }
