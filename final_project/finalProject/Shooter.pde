@@ -46,8 +46,7 @@
     }
   
     
-  void update () {
-    
+  void update () {    
     background (imgBg);
     
     x += vx;
@@ -70,8 +69,7 @@
     shooter.gameOver();
   }
   
-  void stars() {
-    
+  void stars() {   
     fill(0, 0);
     fill(255, 220, 0, 100);
     stroke(150);
@@ -79,9 +77,9 @@
   }
   
   
-  void startGame() {
+  void startGame() {    
     playing = true;
-    timer.start();
+    timer.start();   
   }
   
   void display() {
@@ -104,6 +102,7 @@
   }
   
   void ballFalling() {  
+    
     stroke(255, 255, 255); 
     noFill(); 
     for (int i=0; i<15; i++)
@@ -114,8 +113,7 @@
     }
   }
   
-  void shooter(int shotX)
-  {
+  void shooter(int shotX) {
     boolean strike = false;
     for (int i = 0; i < 15; i++) {
   

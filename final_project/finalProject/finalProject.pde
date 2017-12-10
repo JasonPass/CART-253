@@ -44,6 +44,7 @@
 
 
   // Set of named options for game menu and splashscreen
+  
   enum State {
     NONE, 
       SPLASHSCREEN, 
@@ -85,7 +86,10 @@
   // Variable for game over
   int gameOver = 0;
   
+  // setup()
+  //
   // Set up the basics, size and the three states
+  
   void setup() {
   
     // Screen size
@@ -109,12 +113,12 @@
     file = new SoundFile(this, "LaserBlasts.mp3");
   }
   
-  // void draw()
+  // draw()
   //
   // Uses a FSM to run certain states. Depending on what state
   // you're in the game will draw the objects within it
-  void draw() {
-    
+  
+  void draw() {    
     // Allows to switch between the three different cases 
     switch (state) {
     
@@ -158,7 +162,7 @@
     }
   }
   
-  // void reset()
+  // reset()
   //
   // Resets the game when you run out of time or let a box
   // too far into atmosphere 
@@ -168,7 +172,7 @@
     }
   }
   
-  // void keyPressed()
+  // keyPressed()
   //
   // methods for different sates and for the game 
   void keyPressed() {
@@ -210,7 +214,7 @@
       shooter.keyReleased();
       break;
     }
-  }
+  } 
   
   // void mousePressed()
   //
