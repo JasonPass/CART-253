@@ -18,7 +18,7 @@
     int SHOOTER_INSET;
     
     // Variable that controls the speed of the ship
-    int SPEED = 5;     
+    int SPEED = 6;     
     // Height box for the ship
     int HEIGHT = 30;
     // Width box for the ship
@@ -60,7 +60,7 @@
       downKey = _downKey;
   
       // Timer for the game is set to 45 seconds
-      timer = new Timer(5000);
+      timer = new Timer(50000);
     }
   
   // update()
@@ -180,19 +180,25 @@
   void shooter(int shotX) {
     // boolean to check if we strike the boxes with the laser
     boolean strike = false;
-    // For tyhe array of 15 boxes dos the following
+    // For the array of 15 boxes do the following
     // if we hit target
     for (int i = 0; i < 15; i++) {
   
       if ((shotX >= (ballx[i]-boxSize/2)) && (shotX <= (ballx[i]+boxSize/2))) {
+        // Strike becomes true if we hit a box
         strike = true;
         line(shooter.x, shooter.y, shooter.x, bally[i]);
-        //fill(color(255, 255, 255, 180));
+        // Slight red heu when they explode                                    
+        fill(255, 220, 220);
         noStroke();
+        // When a box is shot they explode + 60 of their size
         rect(ballx[i], bally[i], boxSize+60, boxSize+60);
         rectMode(CENTER);
         ballx[i] = getRandomX();
-        bally[i] = 0;
+        // Box spawns at random locatioon between
+        // 0 and 100 when hit
+        bally[i] = int (random(0, 100));
+        // Adds a point each time we hit a box
         score++;
       }
     }
@@ -286,7 +292,7 @@
       vy = SPEED;
     }
     if (key == 'e') {
-      SPEED = 5;
+      SPEED = 6;
     }
     if (key == 'm' || key == 'M') {
       returnToMenu = true;
