@@ -34,8 +34,8 @@
     // color shooterColor = color (255, 0, 0);
   
     // Characters used to make the ship move
-    char upKey;
-    char downKey;
+    char leftKey;
+    char rightKey;
   
     // A boolean that checks if you're playing
     boolean playing = false;
@@ -50,14 +50,14 @@
     
     // arguments for position and movement of ship and sets 
     // the starting velocity to 0
-    Shooter(int _x, int _y, char _upKey, char _downKey) {
+    Shooter(int _x, int _y, char _leftKey, char _rightKey) {
       x = _x;
       y = _y;
       vx = 0;
       vy = 0;
   
-      upKey = _upKey;
-      downKey = _downKey;
+      leftKey = _leftKey;
+      rightKey = _rightKey;
   
       // Timer for the game is set to 45 seconds
       timer = new Timer(5000);
@@ -308,29 +308,35 @@
   
   // keyPressed()
   //
-  // 
+  // Called in the main program, all the ship movements 
+  // and velocity are here
     
   void keyPressed() {
     // Check if the key is our up key
-    if (key == upKey) {
+    if (key == leftKey) {
       // If so we want a negative x velocity
       vx = -SPEED;
-    } // Otherwise check if the key is our down key 
-    else if (key == downKey) {
+    } 
+    // Otherwise check if the key is our down key 
+    else if (key == rightKey) {
       // If so we want a positive x velocity
       vx = SPEED;
     }
+    
     if (key == 'w') {
       // If so we want a negative y velocity
       vy = -SPEED;
-    } // Otherwise check if the key is our down key 
+    } 
+    // Otherwise check if the key is our down key 
     else if (key == 's') {
       // If so we want a positive y velocity
       vy = SPEED;
     }
+    
     if (key == 'e') {
       SPEED = 6;
     }
+    
     if (key == 'm' || key == 'M') {
       returnToMenu = true;
     }
@@ -338,11 +344,12 @@
   
   void keyReleased() {
     // Check if the key is our up key and the paddle is moving up
-    if (key == upKey && vx < 0) {
+    if (key == leftKey && vx < 0) {
       // If so it should stop
       vx = 0;
-    } // Otherwise check if the key is our down key and paddle is moving down 
-    else if (key == downKey && vx > 0) {
+    } 
+    // Otherwise check if the key is our down key and paddle is moving down 
+    else if (key == rightKey && vx > 0) {
       // If so it should stop
       vx = 0;
     }
