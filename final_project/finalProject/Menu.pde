@@ -30,11 +30,14 @@
       textFont (font);
       textAlign(CENTER);
       textSize(35);
-      text("Press k to start game", width/2, 500 );
+      text("Press k to start game", width/2, 800 );
       textSize(20);
-      text("Use WASD to move and left click to fire", width/2, height/2 +50);
-      text("Press r for hyperspeed and e to cruise", width/2, height/2 +80);
-      text("Remember you have an emergency rear laser canon!", width/2, height/2 +110);
+      // Info the player needs to know before playing
+      text("Your mission: defend planet earth for 60 seconds", width/2, height/2 - 40);
+      text("Do not let them through the force field", width/2, height/2 - 10);
+      text("Use WASD to move and left click to fire", width/2, height/2 + 20);
+      text("Press r for hyperspeed and e to cruise", width/2, height/2 + 50);
+      text("Remember you have an emergency rear laser canon!", width/2, height/2 + 80);
     }
       
     // keyPressed()

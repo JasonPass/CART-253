@@ -42,13 +42,14 @@
     // A boolean that checks if you returned to the menu
     boolean returnToMenu = false;
     
+    // Variable used for shooting enemies
+    int shotX;
+    
     // Variable for the timer used to keep track of game 
     Timer timer;
     
-    // Variable used for shooting enemies
-    int shotX;
-  
-    // 
+    // arguments for position and movement of ship and sets 
+    // the starting velocity to 0
     Shooter(int _x, int _y, char _upKey, char _downKey) {
       x = _x;
       y = _y;
@@ -58,28 +59,45 @@
       upKey = _upKey;
       downKey = _downKey;
   
-      // Timer is set to 40 seconds
+      // Timer for the game is set to 45 seconds
       timer = new Timer(5000);
     }
-     
-  void update () {    
+  
+  // update()
+  //
+  // Calls the rest of the code into here updates pretty much
+  // the whole main game
+ 
+  void update () {   
+    // Background is an image I made in photoshop
     background (imgBg);
     
+    // what lets you move the ship
+    // updates movement with the velocity 
     x += vx;
     y += vy;
+    
+    // Constrains the ship to within the window on x and y axis
+    // Left a bit of extra room for the x axis just in case
     x = constrain(x, 0 + WIDTH/2-5, width - WIDTH/2 +5);
     y = constrain(y, 0 + HEIGHT/2+10, height - HEIGHT/2 - 20);
   
+    // Update the rest of the code into update()
+    // so that in the main page there's only 
+    // shooter.update() in the case
     ballFalling();
     display();
     outOfScreen();
     shooter.stars();
     shooter.screenInfo();    
     
+    // Create the font Ubuntu Rugular for the text in the game
     font = createFont("UbuntuR.ttf", 20);
+    
     textFont (font);
     textSize(12);
     fill(255);
+    // Timer methode called to dispolay the amount of time left 
     text(timer.getElapsed()/1000, 90, 40);
     
     shooter.gameOver();
