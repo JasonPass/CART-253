@@ -54,7 +54,7 @@
              
     // keyReleased()
     //
-    // Does nothing.
+    // Does nothing
     
     void keyReleased() {
     }

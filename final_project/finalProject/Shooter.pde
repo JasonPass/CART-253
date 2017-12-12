@@ -178,7 +178,10 @@
   // if a box is hit then add 1 point 
   
   void shooter(int shotX) {
+    // boolean to check if we strike the boxes with the laser
     boolean strike = false;
+    // For tyhe array of 15 boxes dos the following
+    // if we hit target
     for (int i = 0; i < 15; i++) {
   
       if ((shotX >= (ballx[i]-boxSize/2)) && (shotX <= (ballx[i]+boxSize/2))) {
