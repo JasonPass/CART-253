@@ -178,17 +178,19 @@
   // if a box is hit then add 1 point 
   
   void shooter(int shotX) {
-    // boolean to check if we strike the boxes with the laser
+    // Boolean to check if we strike the boxes with the laser
     boolean strike = false;
     // For the array of 15 boxes do the following
     // if we hit target
     for (int i = 0; i < 15; i++) {
-  
+      
+      // Checks if we hit a box, if we did do the following
       if ((shotX >= (ballx[i]-boxSize/2)) && (shotX <= (ballx[i]+boxSize/2))) {
         // Strike becomes true if we hit a box
         strike = true;
+        // Shoots line from this location, line goes up until bally
         line(shooter.x, shooter.y, shooter.x, bally[i]);
-        // Slight red heu when they explode                                    
+        // Slight red hue when they explode                                    
         fill(255, 220, 220);
         noStroke();
         // When a box is shot they explode + 60 of their size
@@ -202,19 +204,20 @@
         score++;
       }
     }
-  
+    // if we don't strike anything than just fire a red 
+    // line a accross the screen
     if (strike == false)
     {
+      // Shoots line from this location, line goes to the end of screen
       line(shooter.x, shooter.y, shooter.x, 0);
     }
   }
     
-  void gameOver() {
-  
+  void gameOver() {  
     textSize(20);
     fill(255);
     //if (playing = true) { 
-    if ( timer.isDone() ) {
+    if (timer.isDone()) {
   
       background (0);    
       font = createFont("UbuntuR.ttf", 20);
@@ -226,12 +229,7 @@
       text("Press m to try play again", width/2.2, height/2 +50);
       fill(color(0));
       fill(255, 0, 0);
-  
-      //boolean strike = false;
-      // playing = false;
-      // if (mousePressed) {
-      //fire = false;
-      // }
+      boxSize = 0;
     }
   }
   
@@ -257,6 +255,7 @@
         text(score, width/2.2, height/2.2 + 100);
         text ("YOU LET ONE TRHOUGH", width/2.2, height/2+300);
         text("Press m to try again", width/2.2, height/2 +200);
+        boxSize = 0;
       }
     }
   }
