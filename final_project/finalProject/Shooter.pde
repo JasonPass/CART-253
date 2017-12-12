@@ -216,12 +216,14 @@
   // gameOver()
   //
   // When the timer is done your time is up 
-  // You will see your total points 
+  // You will see your total points along with the 
+  // gameOver graphic / text
     
   void gameOver() {  
     textSize(20);
     fill(255);
-    //if (playing = true) { 
+    
+    // If the timer reaches 60 seconds the game is done
     if (timer.isDone()) {
   
       background (0);    
@@ -234,9 +236,16 @@
       text("Press m to try play again", width/2.2, height/2 +90);
       fill(color(0));
       fill(255, 0, 0);
+      // Turns the boxes un-hittable so that players cant
+      // accumulate extra points while in this state 
       boxSize = 0;
     }
   }
+  
+  // screenInfo()
+  //
+  // This is the information you see at the top left 
+  // corner of the window
   
   void screenInfo() {
    
@@ -250,34 +259,57 @@
     
   }
   
+  // outOfScreen()
+  //
+  // When the ball falls through the force field the game will end 
+  // and you will be shown a screen of the box approaching earth 
+  // along with your total score 
+  
   void outOfScreen() {
-  
+    // The array of 15 boxes
     for (int i = 0; i < 15; i++) {
-  
+      
+      // If one of them is greater then the height
+      // activate the following
       if (bally[i]-boxSize/2 > height) {              
         background(imgGo);
         text("Your total score is:", width/2.2, height/2.2 +50);
         text(score, width/2.2, height/2.2 + 100);
         text ("YOU LET ONE TRHOUGH", width/2.2, height/2+300);
         text("Press m to try again", width/2.2, height/2 +200);
+        // Turns the boxes un-hittable so that players cant
+        // accumulate extra points while in this state 
         boxSize = 0;
       }
     }
   }
   
+  // reset()
+  //
+  // Reset the game by pressing m, resets the time and 
+  // the boxes randomly, returns player to the menu
+  
   void reset() {
     
     score = 0;
+    // Resets  the timer back to 0
     timer.stop();
+    // Respawns the boxes at the top randomly 
     ballFalling();
+    // Puts the box size back to its default value 
     boxSize = 28;
+    // The boxes are spawned randomly from -400 to 0
     for (int i = 0; i < bally.length; i++) {
       bally[i] = int (random(-400));
     }
-  
+    
     returnToMenu = false;
   }
   
+  // keyPressed()
+  //
+  // 
+    
   void keyPressed() {
     // Check if the key is our up key
     if (key == upKey) {
