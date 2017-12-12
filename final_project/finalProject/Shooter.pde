@@ -147,22 +147,35 @@
     }
   }
   
+  // getRandomX()
+  //
   // Returns random locations for the boxes to fall from on X axis
+  // between 30 and 1250
+  
   int getRandomX() {
     return int(random(30, 1250));
   }
   
-  void ballFalling() {  
-    
+  // ballFalling()
+  //
+  // This is where the array is for the boxes falling from the top
+  // of the screen
+  
+  void ballFalling() {      
+    // White stroke with no fill
     stroke(255, 255, 255); 
     noFill(); 
     for (int i=0; i<15; i++)
     {
       rect(ballx[i], bally[i]++, 20, 20);
-      // x = constrain(x, 0 + WIDTH/2-5, width - WIDTH/2 +5);
-      // y = constrain(y, 0 + HEIGHT/2, height - HEIGHT/2 - 70);
     }
   }
+    
+    
+  // shooter(int shotX)
+  //
+  // Determines if the boxes were hit by the laser
+  // if a box is hit then add 1 point 
   
   void shooter(int shotX) {
     boolean strike = false;
@@ -186,7 +199,7 @@
       line(shooter.x, shooter.y, shooter.x, 0);
     }
   }
-  
+    
   void gameOver() {
   
     textSize(20);
