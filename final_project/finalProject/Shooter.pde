@@ -212,6 +212,11 @@
       line(shooter.x, shooter.y, shooter.x, 0);
     }
   }
+  
+  // gameOver()
+  //
+  // When the timer is done your time is up 
+  // You will see your total points 
     
   void gameOver() {  
     textSize(20);
@@ -223,10 +228,10 @@
       font = createFont("UbuntuR.ttf", 20);
       textFont (font);
       textAlign(CENTER);
-      fill(255, 255, 255);
-      text("TIME LIMIT REACHED", width/2.2, height/2);
+      fill(255, 255, 255);  
+      text("You have successfully defended the force field for 60 seconds!", width/2.2, height/2);
       text("Your total points is: "+ score, width/2.2, height/2 + 25);
-      text("Press m to try play again", width/2.2, height/2 +50);
+      text("Press m to try play again", width/2.2, height/2 +90);
       fill(color(0));
       fill(255, 0, 0);
       boxSize = 0;
