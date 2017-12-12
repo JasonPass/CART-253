@@ -60,7 +60,7 @@
       downKey = _downKey;
   
       // Timer for the game is set to 45 seconds
-      timer = new Timer(50000);
+      timer = new Timer(5000);
     }
   
   // update()
@@ -265,6 +265,7 @@
     score = 0;
     timer.stop();
     ballFalling();
+    boxSize = 28;
     for (int i = 0; i < bally.length; i++) {
       bally[i] = int (random(-400));
     }
