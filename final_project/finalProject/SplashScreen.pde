@@ -2,7 +2,6 @@
   //
   //
 
-
   class SplashScreen {
     
     PImage imgSp;

@@ -44,7 +44,7 @@
 // where the posters would be slightly more exaggerated than the game itself. 
 
 
-  // Set of named options for game menu and splashscreen
+  // Set of named options for the game, menu and splashscreen
   
   enum State {
     NONE, 
@@ -85,7 +85,7 @@
   boolean fire = false;
   
   // Variable for game over
-  int gameOver = 0;
+  //int gameOver = 0;
   
   // setup()
   //
@@ -99,6 +99,7 @@
     imgGo = loadImage ("background.for.box.over.jpg");
     imgBg = loadImage ("background.for.game.jpg");
     
+    // Load sound files for laser and speed boost
     file = new SoundFile(this, "LaserBlasts.mp3");
     fileW = new SoundFile(this, "warpSpeed.mp3");
   
@@ -107,13 +108,11 @@
     menu = new Menu();
     state = State.SPLASHSCREEN;
       
-    // Starts your ship in middle of screen
+    // Starts your ship in middle of the screen
     int SHOOTER_INSET = width/2;
     shooter = new Shooter(SHOOTER_INSET, width/2, 'a', 'd');
-    
-    file = new SoundFile(this, "LaserBlasts.mp3");
   }
-  
+        
   // draw()
   //
   // Uses a FSM to run certain states. Depending on what state

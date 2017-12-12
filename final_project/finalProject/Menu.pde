@@ -2,8 +2,7 @@
   //
   // This class is for the menu
   // This is where you're reset if the time runs out or if you press m 
-  
-   
+     
   class Menu {
         
     // A variable to track the user's selection (starts as NONE)  

@@ -2,7 +2,6 @@
   //
   //
 
-
 class Timer {
   
   // The value of millis() when the timer was started
