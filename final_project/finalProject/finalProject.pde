@@ -166,6 +166,7 @@
   //
   // Resets the game when you run out of time or let a box
   // too far into atmosphere 
+  
   void reset() {
     if (key == 'm' || key == 'M') {
     shooter.reset();
@@ -175,6 +176,7 @@
   // keyPressed()
   //
   // methods for different sates and for the game 
+  
   void keyPressed() {
     switch (state) {
     case NONE:
@@ -196,7 +198,8 @@
   
   // keyReleased()
   //
-  // methods for different sates and for the game
+  // Methods for different sates and for the game
+  
   void keyReleased() {
     switch (state) {
     case NONE:
@@ -218,8 +221,9 @@
   
   // void mousePressed()
   //
-  // turns the boolean fire to true when mouse
-  // is pressed
+  // Turns the boolean fire to true when mouse is pressed
+  // Also plays a sci-fi shooting sound 
+  
   void mousePressed() {  
     fire = true;
     file.play();

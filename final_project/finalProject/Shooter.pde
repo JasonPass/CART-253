@@ -72,8 +72,8 @@
     // Background is an image I made in photoshop
     background (imgBg);
     
-    // what lets you move the ship
-    // updates movement with the velocity 
+    // What lets you move the ship
+    // Updates movement with the velocity 
     x += vx;
     y += vy;
     
@@ -99,9 +99,15 @@
     fill(255);
     // Timer methode called to dispolay the amount of time left 
     text(timer.getElapsed()/1000, 90, 40);
-    
+    // When the time is up the game is done
     shooter.gameOver();
   }
+  
+  // stars()
+  //
+  // This gives a bit of life to the game 
+  // some quick flickering that can be interpreted as 
+  // stars in the distance or space debris
   
   void stars() {   
     fill(0, 0);
@@ -109,19 +115,31 @@
     stroke(150);
     ellipse(random(1000), random(1000), 2, 2);
   }
-   
+  
+  // startGame()
+  //
+  // Checks if the player is playing 
+  // If they are the timer stars counting up to 60 seconds
+  
   void startGame() {    
     playing = true;
     timer.start();   
   }
   
+  // display()
+  //
+  // Draws crucial feature sof the game such as 
+  // the ship, the laser 
+  
   void display() {
     timer.isDone();
+    // The ship you control was made in Photoshop
     img = loadImage ("Craft3.png");
-    fill(255);
+    // The color of the line / laser
     stroke (255, 50, 50);
     image(img, x, y );
     imageMode(CENTER);
+    // If statement to check if we shoot
     if (fire)
     {
       shooter(x);
