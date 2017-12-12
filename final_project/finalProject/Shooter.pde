@@ -1,3 +1,9 @@
+  // Shooter //
+  //
+  // This is the gam
+  // It's in its own class which is than made into an
+  // object called in the main program (shooter.update())
+
   
   class Shooter {
   

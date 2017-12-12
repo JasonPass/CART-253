@@ -1,5 +1,10 @@
+  // Timer //
+  //
+  //
+
 
 class Timer {
+  
   // The value of millis() when the timer was started
   int startTime;
   // The number of milliseconds that have elapsed for the timer
