@@ -15,6 +15,7 @@
 
 // Try and accoumalate as many points as you can!
 // Compete with friends and try to get the highest score you can!
+
 // This game's purpose is to improve hand eye coordination along 
 // with reflexes and quick decision making skills
 

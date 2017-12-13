@@ -86,6 +86,7 @@ class Timer {
   //
   // Returns true if the elapsed time is greater than the set time
   // and false otherwise
+  
   boolean isDone() {
     // If the timer isn't running or it's paused, then it isn't
     // done
