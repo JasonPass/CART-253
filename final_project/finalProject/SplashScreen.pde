@@ -1,6 +1,9 @@
   // SplashScreen //
   //
-  // 
+  // This is the class for the splash screen when the player
+  // first opens the game 
+  // A quick intro to the game, lets the player know before hand 
+  // how the game is in a vague sense 
 
   class SplashScreen {
     
@@ -39,11 +42,15 @@
    // keyPressed()
    //
    // Called by the main program when the menu is active 
-   // The player must press any button in order to move to the menu 
+   // The player must press any key in order to move to the menu 
    
    void keyPressed() {
     finished = true;
    }
+   
+  // keyReleased()
+  //
+  // Does nothing
    
   void keyReleased() {
   }
