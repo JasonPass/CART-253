@@ -1,6 +1,7 @@
-  // Timer //
-  //
-  //
+// Timer //
+//
+// This is the timer that governs the game
+// When the timer hits 60 seconds your time is up
 
 class Timer {
   
@@ -68,6 +69,10 @@ class Timer {
     elapsed = 0;
   }
 
+  // getElapsed()
+  //
+  // Gets the amount of time the timer has ben running 
+  
   int getElapsed() {
     if (!running) {
       return -1;

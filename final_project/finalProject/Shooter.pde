@@ -1,67 +1,67 @@
-  // Shooter //
-  //
-  // This is the game, it's in its own class which is then made 
-  // into an object called in the main program (shooter.update())
+// Shooter //
+//
+// This is the game, it's in its own class which is then made 
+// into an object called in the main program (shooter.update())
+
+class Shooter {
   
-  class Shooter {
+  // This determines the hitbox of the enemies
+  int boxSize = 28;
   
-    // This determines the hitbox of the enemies
-    int boxSize = 28;
-    
-    // Variable to get random x locations for the 15 boxes to fall from 
-    int[] ballx = { getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX() };    
-    // Variable telling the boxes to choose a random location on the
-    // y axis between -400 and 0 to fall from 
-    int[] bally = { int (random(-400)), int (random(-400)), int (random(-400)), int (random(-400)), int (random(-400)), int (random(-400)), int (random(-400)), int (random(-400)), int (random(-400)),int (random(-400)), int (random(-400)),int (random(-400)),int (random(-400)),int (random(-400)), int (random(-400)) };
-    
-    // Variable used for where the ship spawns
-    int SHOOTER_INSET;
-    
-    // Variable that controls the speed of the ship
-    int SPEED = 6;     
-    // Height box for the ship
-    int HEIGHT = 30;
-    // Width box for the ship
-    int WIDTH = 40;
+  // Variable to get random x locations for the 15 boxes to fall from 
+  int[] boxX = { getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX(), getRandomX() };    
+  // Variable telling the boxes to choose a random location on the
+  // y axis between -400 and 0 to fall from 
+  int[] boxY = { int (random(-400)), int (random(-400)), int (random(-400)), int (random(-400)), int (random(-400)), int (random(-400)), int (random(-400)), int (random(-400)), int (random(-400)),int (random(-400)), int (random(-400)),int (random(-400)),int (random(-400)),int (random(-400)), int (random(-400)) };
   
-    // Variables for movements on x and y axis 
-    // also used for velocity 
-    int x;
-    int y;
-    int vx;
-    int vy; 
+  // Variable used for where the ship spawns
+  int SHOOTER_INSET;
   
-    // color shooterColor = color (255, 0, 0);
+  // Variable that controls the speed of the ship
+  int SPEED = 6;     
+  // Height box for the ship
+  int HEIGHT = 30;
+  // Width box for the ship
+  int WIDTH = 40;
+
+  // Variables for movements on x and y axis 
+  // also used for velocity 
+  int x;
+  int y;
+  int vx;
+  int vy; 
+
+  // color shooterColor = color (255, 0, 0);
+
+  // Characters used to make the ship move
+  char leftKey;
+  char rightKey;
+
+  // A boolean that checks if you're playing
+  boolean playing = false;
+  // A boolean that checks if you returned to the menu
+  boolean returnToMenu = false;
   
-    // Characters used to make the ship move
-    char leftKey;
-    char rightKey;
+  // Variable used for shooting enemies
+  int shotX;
   
-    // A boolean that checks if you're playing
-    boolean playing = false;
-    // A boolean that checks if you returned to the menu
-    boolean returnToMenu = false;
-    
-    // Variable used for shooting enemies
-    int shotX;
-    
-    // Variable for the timer used to keep track of game 
-    Timer timer;
-    
-    // arguments for position and movement of ship and sets 
-    // the starting velocity to 0
-    Shooter(int _x, int _y, char _leftKey, char _rightKey) {
-      x = _x;
-      y = _y;
-      vx = 0;
-      vy = 0;
+  // Variable for the timer used to keep track of game 
+  Timer timer;
   
-      leftKey = _leftKey;
-      rightKey = _rightKey;
-  
-      // Timer for the game is set to 60 seconds
-      timer = new Timer(60000);
-    }
+  // arguments for position and movement of ship and sets 
+  // the starting velocity to 0
+  Shooter(int _x, int _y, char _leftKey, char _rightKey) {
+    x = _x;
+    y = _y;
+    vx = 0;
+    vy = 0;
+
+    leftKey = _leftKey;
+    rightKey = _rightKey;
+
+    // Timer for the game is set to 60 seconds
+    timer = new Timer(60000);
+  }
   
   // update()
   //
@@ -85,7 +85,7 @@
     // Update the rest of the code into update()
     // so that in the main page there's only 
     // shooter.update() in the case
-    ballFalling();
+    boxFalling();
     display();
     outOfScreen();
     shooter.stars();
@@ -156,22 +156,21 @@
     return int(random(30, 1250));
   }
   
-  // ballFalling()
+  // boxFalling()
   //
   // This is where the array is for the boxes falling from the top
   // of the screen
   
-  void ballFalling() {      
+  void boxFalling() {      
     // White stroke with no fill
     stroke(255, 255, 255); 
     noFill(); 
     for (int i=0; i<15; i++)
     {
-      rect(ballx[i], bally[i]++, 20, 20);
+      rect(boxX[i], boxY[i]++, 20, 20);
     }
   }
-    
-    
+        
   // shooter(int shotX)
   //
   // Determines if the boxes were hit by the laser
@@ -185,21 +184,21 @@
     for (int i = 0; i < 15; i++) {
       
       // Checks if we hit a box, if we did do the following
-      if ((shotX >= (ballx[i]-boxSize/2)) && (shotX <= (ballx[i]+boxSize/2))) {
+      if ((shotX >= (boxX[i]-boxSize/2)) && (shotX <= (boxX[i]+boxSize/2))) {
         // Strike becomes true if we hit a box
         strike = true;
-        // Shoots line from this location, line goes up until bally
-        line(shooter.x, shooter.y, shooter.x, bally[i]);
+        // Shoots line from this location, line goes up until boxY
+        line(shooter.x, shooter.y, shooter.x, boxY[i]);
         // Slight red hue when they explode                                    
         fill(255, 220, 220);
         noStroke();
         // When a box is shot they explode + 60 of their size
-        rect(ballx[i], bally[i], boxSize+60, boxSize+60);
+        rect(boxX[i], boxY[i], boxSize+60, boxSize+60);
         rectMode(CENTER);
-        ballx[i] = getRandomX();
+        boxX[i] = getRandomX();
         // Box spawns at random locatioon between
         // 0 and 100 when hit
-        bally[i] = int (random(0, 100));
+        boxY[i] = int (random(0, 100));
         // Adds a point each time we hit a box
         score++;
       }
@@ -247,21 +246,19 @@
   // This is the information you see at the top left 
   // corner of the window
   
-  void screenInfo() {
-   
+  void screenInfo() {  
     font = createFont("UbuntuR.ttf", 20);
     textFont (font);
     fill(255);
     textSize(12);
     text ("SCORE    ", 50,20);
     text ("TIME    ", 46,40);
-    text(score, 90, 20);
-    
+    text(score, 90, 20);    
   }
   
   // outOfScreen()
   //
-  // When the ball falls through the force field the game will end 
+  // When the box falls through the force field the game will end 
   // and you will be shown a screen of the box approaching earth 
   // along with your total score 
   
@@ -271,7 +268,7 @@
       
       // If one of them is greater then the height
       // activate the following
-      if (bally[i]-boxSize/2 > height) {              
+      if (boxY[i]-boxSize/2 > height) {              
         background(imgGo);
         text("Your total score is:", width/2.2, height/2.2 +50);
         text(score, width/2.2, height/2.2 + 100);
@@ -295,12 +292,12 @@
     // Resets  the timer back to 0
     timer.stop();
     // Respawns the boxes at the top randomly 
-    ballFalling();
+    boxFalling();
     // Puts the box size back to its default value 
     boxSize = 28;
     // The boxes are spawned randomly from -400 to 0
-    for (int i = 0; i < bally.length; i++) {
-      bally[i] = int (random(-400));
+    for (int i = 0; i < boxY.length; i++) {
+      boxY[i] = int (random(-400));
     }
     
     returnToMenu = false;

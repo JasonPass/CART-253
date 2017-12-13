@@ -1,22 +1,22 @@
-  // SplashScreen //
-  //
-  // This is the class for the splash screen when the player
-  // first opens the game 
-  // A quick intro to the game, lets the player know before hand 
-  // how the game is in a vague sense 
+// SplashScreen //
+//
+// This is the class for the splash screen when the player
+// first opens the game 
+// A quick intro to the game, lets the player know before hand 
+// how the game is in a vague sense 
 
-  class SplashScreen {
-    
-    PImage imgSp;
-    
-    boolean finished = false;
-    
+class SplashScreen {
+  // Splash screen graphic made in Photoshop
+  PImage imgSp;
+  // Boolean to move to the menu
+  boolean finished = false;
+  
   SplashScreen() {
   }
   
   // update()
   //
-  // just displays "display" and the grahpic made in Photoshop
+  // Displays "display" and the grahpic made in Photoshop
   
   void update() {
     imgSp = loadImage("background.final.jpg");
@@ -33,8 +33,7 @@
     textFont (font);
     textAlign(CENTER);
     textSize(64);
-    fill(255);
-  
+    fill(255);  
     textSize(40);
     text("Press any key to continue", width/2, height/2+200);
   }
