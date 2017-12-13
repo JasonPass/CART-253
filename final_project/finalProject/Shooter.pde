@@ -271,7 +271,7 @@ class Shooter {
         background(imgGo);
         text("Your total score is:", width/2.2, height/2.2 +50);
         text(score, width/2.2, height/2.2 + 100);
-        text ("YOU LET ONE TRHOUGH", width/2.2, height/2+300);
+        text ("YOU LET ONE THROUGH", width/2.2, height/2+300);
         text("Press m to try again", width/2.2, height/2 +200);
         // Turns the boxes un-hittable so that players cant
         // accumulate extra points while in this state 
