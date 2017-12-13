@@ -1,6 +1,6 @@
   // SplashScreen //
   //
-  //
+  // 
 
   class SplashScreen {
     
@@ -11,10 +11,18 @@
   SplashScreen() {
   }
   
+  // update()
+  //
+  // just displays "display" and the grahpic made in Photoshop
+  
   void update() {
     imgSp = loadImage("background.final.jpg");
     display();
   }
+  
+  // display()
+  //
+  // This is whats called in update and where the text is 
   
   void display() {
     background(imgSp);
@@ -28,6 +36,11 @@
     text("Press any key to continue", width/2, height/2+200);
   }
   
+   // keyPressed()
+   //
+   // Called by the main program when the menu is active 
+   // The player must press any button in order to move to the menu 
+   
    void keyPressed() {
     finished = true;
    }

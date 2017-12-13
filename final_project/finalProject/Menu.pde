@@ -43,7 +43,7 @@
     // keyPressed()
     //
     // Called by the main program when the menu is active 
-    // The player must press k in order to start the game. 
+    // The player must press k in order to start the game 
     
     void keyPressed() {
       if (key == 'k' || key == 'K') {

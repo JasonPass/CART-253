@@ -312,12 +312,12 @@
   // and velocity are here
     
   void keyPressed() {
-    // Check if the key is our up key
+    // Check if the key is th left key
     if (key == leftKey) {
       // If so we want a negative x velocity
       vx = -SPEED;
     } 
-    // Otherwise check if the key is our down key 
+    // Otherwise check if the key isth right key 
     else if (key == rightKey) {
       // If so we want a positive x velocity
       vx = SPEED;
@@ -342,33 +342,41 @@
     }
   }
   
+  // keyReleased()
+  //
+  // keyReleased is also called in the main program
+  // Makes sure that hen you release a WASD key that the ship stops moving
+
   void keyReleased() {
-    // Check if the key is our up key and the paddle is moving up
+    // Check if the key is left key and the ship is moving left
     if (key == leftKey && vx < 0) {
       // If so it should stop
       vx = 0;
     } 
-    // Otherwise check if the key is our down key and paddle is moving down 
+    // Otherwise check if the key is the right key and the ship is moving right 
     else if (key == rightKey && vx > 0) {
       // If so it should stop
       vx = 0;
     }
-  
+    // Checks if the key is the up key and moving
     if (key == 'w' && vy < 0) {
       // If so it should stop
       vy = 0;
-    } // Otherwise check if the key is our down key and paddle is moving down 
+    } 
+    // Checks if the key is the down key and the ship is moving down 
     else if (key == 's' && vy > 0) {
       // If so it should stop
       vy = 0;
     }
-  
+    // R is you boost mode which changes the SPEED variable to 30 
+    // Also plays a sound when activated
     if (key == 'r') {
       SPEED = 30;
       fileW.play();
     }
   }
 }
+
     
   
   

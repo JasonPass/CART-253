@@ -2,7 +2,7 @@
 // Jason Passalacqua
 
 
-// ARTIST'S STATEMENT
+// ARTIST'S STATEMENT //
 
 
 // Synopsis
