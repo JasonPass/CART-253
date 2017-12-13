@@ -132,11 +132,11 @@ class Shooter {
   // the ship, the laser 
   
   void display() {
+    // Called from timer class 
     timer.isDone();
-    // The ship you control was made in Photoshop
-    //img = loadImage ("Craft3.png");
     // The color of the line / laser
     stroke (255, 50, 50);
+    // The ship you control was made in Photoshop
     image(img, x, y );
     imageMode(CENTER);
     // If statement to check if we shoot
@@ -294,6 +294,9 @@ class Shooter {
     boxFalling();
     // Puts the box size back to its default value 
     boxSize = 28;
+    // Spawns you back in th center of window
+    SHOOTER_INSET = width/2;
+    shooter = new Shooter(SHOOTER_INSET, width/2, 'a', 'd');
     // The boxes are spawned randomly from -400 to 0
     for (int i = 0; i < boxY.length; i++) {
       boxY[i] = int (random(-400));
