@@ -59,8 +59,8 @@
       leftKey = _leftKey;
       rightKey = _rightKey;
   
-      // Timer for the game is set to 45 seconds
-      timer = new Timer(5000);
+      // Timer for the game is set to 60 seconds
+      timer = new Timer(60000);
     }
   
   // update()
