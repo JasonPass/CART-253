@@ -68,18 +68,21 @@
   SoundFile file;
   SoundFile fileW;
   
+  // Variable for menu screen made in Photoshop
+  PImage imgM;
   // Variable for main game background  
-  PImage imgBg;
-  
+  PImage imgBg;  
   // Variable for backgeound image when box is out of screen
-  PImage imgGo;
-  
+  PImage imgGo;  
   // Variable for ship png created in Photoshop
-  PImage img;
+  PImage img;  
+  // Variable for image when time is up 
+  PImage imgDone;
+  // Variable splash screen graphic made in Photoshop
+  PImage imgSp;
   
   // Variable for Ubuntu Regular font
   PFont font;
-  
   // Variable for score
   int score;
   
@@ -97,9 +100,11 @@
   
     // Screen size
     size (1280, 1000);
-    // Load images for ball over screen and background
+    // Load images for box over screen and backgrounds
     imgGo = loadImage ("background.for.box.over.jpg");
     imgBg = loadImage ("background.for.game.jpg");
+    imgDone = loadImage("background.for.game.done.jpg");
+    imgSp = loadImage("background.final.jpg");
     
     // Load sound files for laser and speed boost
     file = new SoundFile(this, "LaserBlasts.mp3");

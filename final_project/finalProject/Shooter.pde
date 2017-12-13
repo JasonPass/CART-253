@@ -31,8 +31,6 @@ class Shooter {
   int vx;
   int vy; 
 
-  // color shooterColor = color (255, 0, 0);
-
   // Characters used to make the ship move
   char leftKey;
   char rightKey;
@@ -48,7 +46,7 @@ class Shooter {
   // Variable for the timer used to keep track of game 
   Timer timer;
   
-  // arguments for position and movement of ship and sets 
+  // Arguments for position and movement of ship and sets 
   // the starting velocity to 0
   Shooter(int _x, int _y, char _leftKey, char _rightKey) {
     x = _x;
@@ -60,7 +58,7 @@ class Shooter {
     rightKey = _rightKey;
 
     // Timer for the game is set to 60 seconds
-    timer = new Timer(60000);
+    timer = new Timer(6000);
   }
   
   // update()
@@ -69,6 +67,8 @@ class Shooter {
   // the whole main game
  
   void update () {   
+    //imgDone = loadImage("background.for.game.done.jpg");
+    
     // Background is an image I made in photoshop
     background (imgBg);
     
@@ -218,14 +218,13 @@ class Shooter {
   // You will see your total points along with the 
   // gameOver graphic / text
     
-  void gameOver() {  
+  void gameOver() {     
     textSize(20);
-    fill(255);
-    
+    fill(255);    
     // If the timer reaches 60 seconds the game is done
     if (timer.isDone()) {
   
-      background (0);    
+      background (imgDone);    
       font = createFont("UbuntuR.ttf", 20);
       textFont (font);
       textAlign(CENTER);

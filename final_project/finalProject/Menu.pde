@@ -4,7 +4,7 @@
 // This is where you're reset if the time runs out or if you press m 
    
 class Menu {
-      
+        
   // A variable to track the user's selection (starts as NONE)  
   State selection = State.NONE;
 
@@ -17,6 +17,7 @@ class Menu {
   // The update method just displays the menu
   
   void update() {
+    imgM = loadImage("background.for.menu.jpg");
     display();
   }
 
@@ -25,7 +26,7 @@ class Menu {
   // The display method displays what makes up the menu screen
   
   void display() {            
-    background(0);
+    background(imgM);
     font = createFont("UbuntuR.ttf", 20);
     textFont (font);
     textAlign(CENTER);
@@ -33,11 +34,13 @@ class Menu {
     text("Press k to start game", width/2, 800 );
     textSize(20);
     // Info the player needs to know before playing
+    textAlign (LEFT);
     text("Your mission: defend planet earth for 60 seconds", width/2, height/2 - 40);
     text("Do not let them through the force field", width/2, height/2 - 10);
     text("Use WASD to move and left click to fire", width/2, height/2 + 20);
     text("Press r for hyperspeed and e to cruise", width/2, height/2 + 50);
     text("Remember you have an emergency rear laser canon!", width/2, height/2 + 80);
+    text("This is the time to prove yourself fighter 27", width/2, height/2 + 110);
   }
     
   // keyPressed()
@@ -51,8 +54,7 @@ class Menu {
        shooter.startGame();
     }
   }
- 
-           
+          
   // keyReleased()
   //
   // Does nothing

@@ -6,8 +6,9 @@
 // how the game is in a vague sense 
 
 class SplashScreen {
+  
   // Splash screen graphic made in Photoshop
-  PImage imgSp;
+  // PImage imgSp;
   // Boolean to move to the menu
   boolean finished = false;
   
@@ -19,7 +20,6 @@ class SplashScreen {
   // Displays "display" and the grahpic made in Photoshop
   
   void update() {
-    imgSp = loadImage("background.final.jpg");
     display();
   }
   
