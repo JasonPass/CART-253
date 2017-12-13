@@ -58,7 +58,7 @@ class Shooter {
     rightKey = _rightKey;
 
     // Timer for the game is set to 60 seconds
-    timer = new Timer(6000);
+    timer = new Timer(30000);
   }
   
   // update()
@@ -215,7 +215,7 @@ class Shooter {
   // gameOver()
   //
   // When the timer is done your time is up 
-  // You will see your total points along with the 
+  // You will see your total score along with the 
   // gameOver graphic / text
     
   void gameOver() {     
@@ -229,8 +229,8 @@ class Shooter {
       textFont (font);
       textAlign(CENTER);
       fill(255, 255, 255);  
-      text("You have successfully defended the force field for 60 seconds!", width/2.2, height/2);
-      text("Your total points is: "+ score, width/2.2, height/2 + 25);
+      text("Thank you for playing!", width/2.2, height/2);
+      text("Your total score is: "+ score, width/2.2, height/2 + 25);
       text("Press m to try play again", width/2.2, height/2 +90);
       fill(color(0));
       fill(255, 0, 0);
@@ -286,7 +286,7 @@ class Shooter {
   // the boxes randomly, returns player to the menu
   
   void reset() {
-    
+    // Resets socre back 0
     score = 0;
     // Resets  the timer back to 0
     timer.stop();
@@ -297,8 +297,7 @@ class Shooter {
     // The boxes are spawned randomly from -400 to 0
     for (int i = 0; i < boxY.length; i++) {
       boxY[i] = int (random(-400));
-    }
-    
+    }    
     returnToMenu = false;
   }
   
