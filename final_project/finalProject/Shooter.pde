@@ -58,7 +58,7 @@ class Shooter {
     rightKey = _rightKey;
 
     // Timer for the game is set to 60 seconds
-    timer = new Timer(30000);
+    timer = new Timer(60000);
   }
   
   // update()
@@ -134,7 +134,7 @@ class Shooter {
   void display() {
     timer.isDone();
     // The ship you control was made in Photoshop
-    img = loadImage ("Craft3.png");
+    //img = loadImage ("Craft3.png");
     // The color of the line / laser
     stroke (255, 50, 50);
     image(img, x, y );

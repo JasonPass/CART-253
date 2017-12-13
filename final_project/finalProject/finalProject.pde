@@ -105,6 +105,7 @@
     imgBg = loadImage ("background.for.game.jpg");
     imgDone = loadImage("background.for.game.done.jpg");
     imgSp = loadImage("background.final.jpg");
+    img = loadImage ("Craft3.png");
     
     // Load sound files for laser and speed boost
     file = new SoundFile(this, "LaserBlasts.mp3");

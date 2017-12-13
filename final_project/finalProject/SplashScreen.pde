@@ -44,13 +44,13 @@ class SplashScreen {
    // The player must press any key in order to move to the menu 
    
    void keyPressed() {
-    finished = true;
+     finished = true;
    }
    
-  // keyReleased()
-  //
-  // Does nothing
+   // keyReleased()
+   //
+   // Does nothing
    
-  void keyReleased() {
-  }
-}
+   void keyReleased() {
+   }
+ }
