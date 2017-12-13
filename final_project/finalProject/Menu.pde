@@ -34,7 +34,7 @@ class Menu {
     text("Press k to start game", width/2, 800 );
     textSize(20);
     // Info the player needs to know before playing
-    textAlign (LEFT);
+    textAlign (CENTER);
     text("Your mission: defend planet earth for 60 seconds", width/2, height/2 - 40);
     text("Do not let them through the force field", width/2, height/2 - 10);
     text("Use WASD to move and left click to fire", width/2, height/2 + 20);
